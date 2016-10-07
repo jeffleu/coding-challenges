@@ -4,7 +4,7 @@
   Implement an algorithm to determine if a string has all
   unique characters. What if you cannot use additional data structures?
 
-	Hints: #44, #117, #132
+  Hints: #44, #117, #132
 
 ************************************************************************/
 
@@ -27,7 +27,7 @@ isUnique('Jeff'); // false
   Given two strings, write a method to decide if one 
   is a permutation of the other.
 
-	Hints: #1, #84, #122, #131
+  Hints: #1, #84, #122, #131
 
 ************************************************************************/
 
@@ -41,10 +41,10 @@ isUnique('Jeff'); // false
   the additional characters, and that you are given the "true" length of 
   the string.
 
-	Input: 'Mr John Smith'
-	Output: 'Mr%20John%20Smith'
+  Input: 'Mr John Smith'
+  Output: 'Mr%20John%20Smith'
 
-	Hints: #53, #118
+  Hints: #53, #118
 
 ************************************************************************/
 
@@ -59,10 +59,10 @@ isUnique('Jeff'); // false
   rearrangement of letters. The palindrome does not need to be limited 
   to just dictionary words.
 
-	Input: 'Tact Coa'
-	Output: true (permutations: "taco cat", "atco eta", etc.)
+  Input: 'Tact Coa'
+  Output: true (permutations: "taco cat", "atco eta", etc.)
 
-	Hints: #106, #121, #134, #136
+  Hints: #106, #121, #134, #136
 
 ************************************************************************/
 
@@ -75,13 +75,13 @@ isUnique('Jeff'); // false
   insert, remove or replace a character. Given two strings, write a 
   function to check if they were one edit (or zero edits) away.
 
-	EXAMPLE
-	pale, ple -> true
-	pales, pale -> true
-	pale, bale -> true
-	pale, bake -> false
+  EXAMPLE
+  pale, ple -> true
+  pales, pale -> true
+  pale, bale -> true
+  pale, bake -> false
 
-	Hints: #23, #97, #130
+  Hints: #23, #97, #130
 
 ************************************************************************/
 
@@ -96,8 +96,8 @@ isUnique('Jeff'); // false
   your method should return the original string. You can assume the
   string has only uppercase and lowercase letters.
 
-	Input: 'aabcccccaaa'
-	Output: 'a2b1c5a3'
+  Input: 'aabcccccaaa'
+  Output: 'a2b1c5a3'
 
   Hints: #92, #110
 
@@ -112,7 +112,7 @@ isUnique('Jeff'); // false
   pixel in the image is 4 bytes, write a method to rotate the image by
   90 degrees. Can you do this in place?
   
-	Hints: #51, #100
+  Hints: #51, #100
 
 ************************************************************************/
 
