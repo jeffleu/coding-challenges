@@ -2,9 +2,9 @@
   
   15.1: THREAD VS PROCESS
 
-	What's the difference between a thread and a process?
-	
-	Hints: #405
+  What's the difference between a thread and a process?
+  
+  Hints: #405
 
 ************************************************************************/
 
@@ -14,9 +14,9 @@
   
   15.2: CONTEXT SWITCH
 
-	How would you measure the time spent in a context switch?
+  How would you measure the time spent in a context switch?
 
-	Hints: #403, #407, #475, #447
+  Hints: #403, #407, #475, #447
 
 ************************************************************************/
 
@@ -26,10 +26,10 @@
   
   15.3: DINING PHILOSOPHERS
 
-	In the famous dining philosophers problem, a bunch of philosophers are
-	sitting around a circular table with one chopstick between each of
-	them. A philosopher needs both chopsticks to eat, and always picks up
-	the left chopstick before the right one. A deadlock could potentially
+  In the famous dining philosophers problem, a bunch of philosophers are
+  sitting around a circular table with one chopstick between each of
+  them. A philosopher needs both chopsticks to eat, and always picks up
+  the left chopstick before the right one. A deadlock could potentially
   occur if all the philosophers reached for the left chopstick at the
   same time. Using threads and locks, implement a simulation of the
   dining philosophers problem that prevents deadlocks.
