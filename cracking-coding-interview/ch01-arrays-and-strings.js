@@ -95,7 +95,38 @@ urlify('Mr John Smith'); // 'Mr%20John%20Smith'
 
 ************************************************************************/
 
+const permutationOfPalindrome = (str) => {
+  str = str.split(' ').join('').toLowerCase();
+  const combos = [];
+  
+  const findCombos = (currentCombo, indexesUsed) => {
+    currentCombo = currentCombo || '';
+    indexesUsed = indexesUsed || [];
+    
+    // Base case
+    if (currentCombo.length === str.length) {
+      combos.push(currentCombo);
+      return;
+    }
+    
+    // Recursive case
+    for (let i = 0; i < str.length; i++) {
+      if (!indexesUsed.includes(i)) {
+        findCombos(currentCombo + str[i], indexesUsed.concat(i));
+      }
+    }
+  };
+  
+  findCombos();
+  
+  return combos.reduce((isPalindrome, combo) => {
+    const reversed = combo.split('').reverse().join('');
+    return (isPalindrome === true || combo === reversed) ? true : false;
+  }, false);
+};
 
+permutationOfPalindrome('Tact Coa'); // true
+permutationOfPalindrome('Tact CoaZ'); // false
 
 /************************************************************************
   
