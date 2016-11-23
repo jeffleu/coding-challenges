@@ -31,7 +31,34 @@ isUnique('Jeff'); // false
 
 ************************************************************************/
 
+const permutations = (str1, str2) => {
+  let combos = [];
+  
+  const findCombo = (currentCombo, indexesUsed) => {
+    currentCombo = currentCombo || '';
+    indexesUsed = indexesUsed || [];
+    
+    // Base case
+    if (currentCombo.length === str2.length) {
+      combos.push(currentCombo);
+      return;
+    }
+    
+    // Recursive case
+    for (let i = 0; i < str1.length; i++) {
+      if (!indexesUsed.includes(i)) {
+        findCombo(currentCombo + str1[i], indexesUsed.concat(i));
+      }
+    }
+  };
+  
+  findCombo();
+  
+  return combos.includes(str2);
+};
 
+permutations('abcd', 'bad'); // true
+permutations('abcd', 'cat'); // false
 
 /************************************************************************
   
@@ -49,6 +76,8 @@ isUnique('Jeff'); // false
 ************************************************************************/
 
 const urlify = (str) => str.split(' ').join('%20');
+
+urlify('Mr John Smith'); // 'Mr%20John%20Smith'
 
 /************************************************************************
   
