@@ -249,7 +249,25 @@ rotateMatrix(matrix); // [[7,4,1], [8,5,2], [9,6,3]]
 
 ************************************************************************/
 
+const zeroMatrix = (matrix) => {
+  let output = [];
+  
+  for (let r = 0; r < matrix.length; r++) {
+    for (let c = 0; c < matrix[r].length; c++) {
+      (matrix[r].includes(0)) ? output.push(0) : output.push(matrix[r][c]);
+    }
+  }
+  
+  return output;
+};
 
+const newMatrix = [
+  [3,3,3],
+  [5,5,5],
+  [4,4,0]
+];
+
+zeroMatrix(newMatrix); // [[3,3,3], [5,5,5], [0,0,0]]
 
 /************************************************************************
   
