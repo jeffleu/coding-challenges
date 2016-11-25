@@ -185,7 +185,25 @@ oneAway('pale', 'bake'); // false
 
 ************************************************************************/
 
+const compressString = (str) => {
+  let compressed = '';
+  let currentCount = 0;
+  
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i + 1]) {
+      currentCount++;
+    } else {
+      currentCount++;
+      compressed += str[i] + currentCount;
+      currentCount = 0;
+    }
+  }
+  
+  return (str.length < compressed.length) ? str : compressed;
+};
 
+compressString('aabcccccaaa'); // 'a2b1c5a3'
+compressString('aab'); // 'aab'
 
 /************************************************************************
   
