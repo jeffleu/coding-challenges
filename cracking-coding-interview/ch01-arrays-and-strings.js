@@ -145,7 +145,29 @@ permutationOfPalindrome('Tact CoaZ'); // false
 
 ************************************************************************/
 
+const oneAway = (str1, str2) => {
+  let lengthDifference;
+  let lettersChanged = 0;
+  
+  if (str1.length > str2.length) {
+    lengthDifference = str1.length - str2.length;
+  } else if (str2.length > str1.length) {
+    lengthDifference = str2.length - str1.length;
+  } else {
+    for (let i = 0; i < str1.length; i++) {
+      if (str1[i] !== str2[i]) {
+        lettersChanged++;
+      }
+    }
+  }
+  
+  return (lengthDifference > 1 || lettersChanged > 1) ? false : true;
+};
 
+oneAway('pale', 'ple'); // true
+oneAway('pales', 'pale'); // true
+oneAway('pale', 'bale'); // true
+oneAway('pale', 'bake'); // false
 
 /************************************************************************
   
