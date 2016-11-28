@@ -280,3 +280,18 @@ zeroMatrix(newMatrix); // [[3,3,3], [5,5,5], [0,0,0]]
   Hints: #34, #88, #104
 
 ************************************************************************/
+
+const stringRotation = (str1, str2) => {
+  const output = [str1];
+  let strCopy = str1;
+  
+  for (let i = 0; i < str1.length - 1; i++) {
+    strCopy = strCopy.slice(1, str1.length) + strCopy[0];
+    output.push(strCopy);
+  }
+  
+  return (output.includes(str2)) ? true : false;
+};
+
+stringRotation('waterbottle', 'erbottlewat'); // true
+stringRotation('waterbottle', 'bottlewat'); // false
