@@ -8,15 +8,13 @@
   factorial(5);  // 120
 ***********************************************************************************/
 
-var factorial = function(n) {
-  // base case
-  if (n === 1 || n === 0) {
+const factorial = (n) => {
+  // Base case
+  if (n < 2) {
     return 1;
-  } else if (n < 0) {
-    return null;
   }
-  
-  // recursive case
+
+  // Recursive case
   return n * factorial(n - 1);
 };
 
@@ -26,22 +24,16 @@ var factorial = function(n) {
   Example: sum([1, 2, 3, 4, 5, 6]);  // 21
 ***********************************************************************************/
 
-var sum = function(array) {
-  if (array.length === 0) {
-    return 0;
-  }
-
-  var arr = array.slice();
-  var num = arr.shift();
-  var len = arr.length;
-	
-  // base case
-  if (len === 0) {
-	  return num;
+const sum = (arr) => {
+  let total = 0;
+  
+  if (Array.isArray(arr)) {
+    arr.forEach(n => total += sum(n));
+  } else {
+    return arr;
   }
   
-  // recursive case
-  return num + sum(arr);
+  return total;
 };
 
 /***********************************************************************************
@@ -50,17 +42,15 @@ var sum = function(array) {
   Example: arraySum([1,[2,3],[[4]],5]); // 15
 ***********************************************************************************/
 
-var arraySum = function(array) {
-  var total = 0;
+const arraySum = (arr) => {
+  let total = 0;
   
-  if (!Array.isArray(array)) {
-    // base case
-    total = array;
+  if (!Array.isArray(arr)) {
+    // Base case
+    return arr;
   } else {
-    // recursive case
-    array.forEach(function(n) {   
-      total += arraySum(n);
-    });
+    // Recursive case
+    arr.forEach(n => total += arraySum(n));
   }
   
   return total;
@@ -70,16 +60,16 @@ var arraySum = function(array) {
   4. Check if a number is even.
 ***********************************************************************************/
 
-var isEven = function(n) {
-  // base case
+const isEven = (n) => {
+  // Base case
   if (n === 0) {
     return true;
   } else if (n === 1) {
     return false;
   }
-  
-  // recursive case
-  else if (n > 1) {
+
+  // Recursive case
+  if (n > 1) {
     return isEven(n - 2);
   } else if (n < 0) {
     return isEven(n + 2);
