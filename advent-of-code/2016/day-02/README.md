@@ -8,16 +8,16 @@ The document goes on to explain that each button to be pressed can be found by s
 
 You can't hold it much longer, so you decide to figure out the code as you walk to the bathroom. You picture a keypad like this:
 
-`1 2 3`
-`4 5 6`
-`7 8 9`
+1 2 3
+4 5 6
+7 8 9
 
 Suppose your instructions are:
 
-```ULL
+ULL
 RRDDD
 LURDL
-UUUUD```
+UUUUD
 
 1. You start at "5" and move up (to "2"), left (to "1"), and left (you can't, and stay on "1"), so the first button is 1. 
 2. Starting from the previous button ("1"), you move right twice (to "3") and then down three times (stopping at "9" after two moves and ignoring the third), ending up with 9.
