@@ -23,7 +23,7 @@ const getDecryptedName = (roomName, sectorID) => {
   return decryptedName;
 };
 
-const getSumOfSectorIDs = (list) => {
+const getRealRooms = (list) => {
   const realRooms = [];
   let sumOfSectorIds = 0;
   
@@ -62,4 +62,4 @@ const getSumOfSectorIDs = (list) => {
   return {sumOfSectorIds, realRooms};
 };
 
-getSumOfSectorIDs(listOfRooms);
+getRealRooms(listOfRooms);
