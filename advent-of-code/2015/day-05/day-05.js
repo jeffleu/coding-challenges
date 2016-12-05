@@ -53,14 +53,3 @@ const getNiceCount = (list) => {
 };
 
 getNiceCount(santasList);
-
-
-
-
-
-
-
-
-
-
-
