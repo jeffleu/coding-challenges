@@ -8,17 +8,17 @@ const getCommonChar = (arr, type) => {
     (!count[letter]) ? count[letter] = 1 : count[letter]++;
   });
   
-  for (let key in count) {
+  for (let letter in count) {
     if (!commonLetter) {
-      commonLetter = [key, count[key]];
+      commonLetter = [letter, count[letter]];
     } else {
       if (type === 'least') {
-        if (count[key] < commonLetter[1]) {
-          commonLetter = [key, count[key]];
+        if (count[letter] < commonLetter[1]) {
+          commonLetter = [letter, count[letter]];
         }
       } else {
-        if (count[key] > commonLetter[1]) {
-          commonLetter = [key, count[key]];
+        if (count[letter] > commonLetter[1]) {
+          commonLetter = [letter, count[letter]];
         }
       }
     }
