@@ -25,7 +25,7 @@ How many houses receive at least one present?
 
 Your puzzle answer was **2592**.
 
-##Part Two
+###Part Two
 
 The next year, to speed up the process, Santa creates a robot version of
 himself, Robo-Santa, to deliver presents with him.

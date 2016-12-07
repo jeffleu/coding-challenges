@@ -31,7 +31,7 @@ Given the recording in your puzzle input, what is the error-corrected version of
 
 Your puzzle answer was **tkspfjcc**.
 
-##Part Two
+###Part Two
 
 Of course, that would be the message - if you hadn't agreed to use a modified repetition code instead.
 
