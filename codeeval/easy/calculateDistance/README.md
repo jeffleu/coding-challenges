@@ -1,6 +1,6 @@
 ##Calculate Distance
 
-###Challengge Description:
+###Challenge Description:
 
 You have coordinates of 2 points and need to find the distance between them.
 

@@ -4,7 +4,7 @@
 
 You have a list of words. Letters of these words are mixed with extra symbols, so it is hard to define the beginning and end of each word. Write a program that will clean up the words from extra numbers and symbols.
 
-##Input Sample:
+###Input Sample:
 
 The first argument is a path to a file. Each line includes a test case with a list of words: letters are both lowercase and uppercase, and are mixed with extra symbols.
 ```
