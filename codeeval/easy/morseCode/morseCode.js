@@ -1,9 +1,7 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var inputArray = line.split(' ');
-
-    var morseCode = {
+    const morseCode = {
       A: '.-',
       B: '-...',
       C: '-.-.',
@@ -44,7 +42,7 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
         
     var output = '';
         
-    inputArray.forEach(function(code) {
+    line.split(' ').forEach(code => {
       for (var key in morseCode) {
         if (morseCode[key] === code) {
           output += key;

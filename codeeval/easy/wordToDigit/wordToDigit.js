@@ -1,32 +1,20 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var lineArray = line.split(';');
-    var output = '';
-    lineArray.forEach(function(numString) {
-      if (numString === 'zero') {
-        output += 0;
-      } else if (numString === 'one') {
-        output += 1;
-      } else if (numString === 'two') {
-        output += 2;
-      } else if (numString === 'three') {
-        output += 3;
-      } else if (numString === 'four') {
-        output += 4;
-      } else if (numString === 'five') {
-        output += 5;
-      } else if (numString === 'six') {
-        output += 6;
-      } else if (numString === 'seven') {
-        output += 7;
-      } else if (numString === 'eight') {
-        output += 8;
-      } else if (numString === 'nine') {
-        output += 9;
-      }
-    });
-
+    const nums = {
+      zero: 0,
+      one: 1,
+      two: 2,
+      three: 3,
+      four: 4,
+      five: 5,
+      six: 6,
+      seven: 7,
+      eight: 8,
+      nine: 9
+    };
+  
+    const output = line.split(';').reduce((total, n) => total + nums[n], '');
     console.log(output);
   }
 });

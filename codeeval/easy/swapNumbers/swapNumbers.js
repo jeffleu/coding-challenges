@@ -1,10 +1,9 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var inputArray = line.split(' ');
     var outputArray = [];
         
-    inputArray.forEach(function(word) {
+    line.split(' ').forEach(word => {
       var num1 = word[0];
       var num2 = word[word.length - 1];
       var flipped = '';
@@ -15,13 +14,8 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
           
       outputArray.push(flipped);
     });
-        
-    var output = '';
-        
-    outputArray.forEach(function(word) {
-      output += word + ' ';
-    });
-        
+   
+    var output = outputArray.reduce((total, word) => `${total}${word} `, '');
     console.log(output.trim());
   }
 });

@@ -1,35 +1,29 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var playerScores = [];
-    line.split(' | ').forEach(function(n) {
-	  playerScores.push(n.split(' ').map(Number));
+    const playerScores = [];
+    line.split(' | ').forEach(n => {
+      playerScores.push(n.split(' ').map(Number));
     });
 
-    var gameScores = [];
-    var numGames = playerScores[0].length;
+    const gameScores = [];
+    const numGames = playerScores[0].length;
     for (var i = 0; i < numGames; i++) {
-	  gameScores.push([]);
+      gameScores.push([]);
     }
 
-    playerScores.forEach(function(player) {
-	  for (var j = 0; j < player.length; j++) {
-		gameScores[j].push(player[j]);
-	  }
+    playerScores.forEach(player => {
+      for (var j = 0; j < player.length; j++) {
+        gameScores[j].push(player[j]);
+      }
     });
 
     var highScores = '';
-
-    gameScores.forEach(function(game) {
-	  var highScore = game.reduce(function(max, num) {
-		if (max > num) { return max; } 
-		else if (max === num) { return max; } 
-		else { return num; }
-	  });
-	
-	  highScores += highScore + ' ';
+    gameScores.forEach(game => {
+      const highScore = game.reduce((max, num) => (max >= num) ? max : num);
+      highScores += highScore + ' ';
     });
 
-    console.log(highScores.trim());      
+    console.log(highScores.trim());         
   }
 });

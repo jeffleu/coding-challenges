@@ -2,8 +2,7 @@ var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
     var output = '';
-    var inputArray = line.split('');
-    inputArray.forEach(function(char) {
+    line.split('').forEach(char => {
       if (char === 'a' || char === '0') {
         output += '0';
       } else if (char === 'b' || char === '1') {
@@ -27,10 +26,6 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
       }
     });
         
-    if (!output) {
-      console.log('NONE');
-    } else {
-      console.log(output);
-    }
+    (!output) ? console.log('NONE') : console.log(output);
   }
 });

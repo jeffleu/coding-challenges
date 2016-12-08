@@ -1,8 +1,8 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var string = line.split(',')[0];
-    var letter = line.split(',')[1];
+    const string = line.split(',')[0];
+    const letter = line.split(',')[1];
     var output = '';
     var isFound = false;
         
@@ -14,10 +14,6 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
       }
     }
         
-    if (!isFound) {
-      console.log(-1);
-    } else {
-      console.log(output);
-    }    
+    (!isFound) ? console.log(-1) : console.log(output);
   }
 });

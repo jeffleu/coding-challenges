@@ -1,7 +1,7 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var isPrime = function(num) {
+    const isPrime = (n) => {
       for (var i = 2; i < num; i++) {
         if (num % i === 0) {
           return false;
@@ -10,8 +10,8 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
       return num > 1;
     }
         
-    var n = Number(line.split(',')[0]);
-    var m = Number(line.split(',')[1]);
+    const n = Number(line.split(',')[0]);
+    const m = Number(line.split(',')[1]);
     var numPrimes = 0;
         
     for (var j = n; j <= m; j++) {

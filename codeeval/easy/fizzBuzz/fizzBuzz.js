@@ -1,9 +1,9 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var num1 = Number(line.split(' ')[0]);
-    var num2 = Number(line.split(' ')[1]);
-    var len = Number(line.split(' ')[2]);
+    const num1 = +line.split(' ')[0];
+    const num2 = +line.split(' ')[1];
+    const len = +line.split(' ')[2];
         
     var output = '';
         
@@ -19,6 +19,6 @@ fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) 
       }
     }
 
-    console.log(output);
+    console.log(output); 
   }
 });

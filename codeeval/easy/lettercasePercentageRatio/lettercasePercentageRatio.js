@@ -1,20 +1,16 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line != "") {
-    var lineArray = line.split('');
+    const lineArray = line.split('');
     var countLowercase = 0;
     var countUppercase = 0;
-    lineArray.forEach(function(char) {
-      if (char === char.toLowerCase()) {
-        countLowercase++;
-      } else {
-        countUppercase++;
-      }
+    lineArray.forEach(char => {
+      (char === char.toLowerCase()) ? countLowercase++ : countUppercase++;
     });
 
-    var lowercasePercent = ((countLowercase / lineArray.length) * 100).toFixed(2);
-    var uppercasePercent = ((countUppercase / lineArray.length) * 100).toFixed(2);
+    const lowercasePercent = ((countLowercase / lineArray.length) * 100).toFixed(2);
+    const uppercasePercent = ((countUppercase / lineArray.length) * 100).toFixed(2);
 
-    console.log('lowercase: ' + lowercasePercent + ' uppercase: ' + uppercasePercent);
+    console.log(`lowercase: ${lowercasePercent} uppercase: ${uppercasePercent}`);
   }
 });

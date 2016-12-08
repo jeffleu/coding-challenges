@@ -1,7 +1,7 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var inputArray = line.split(' ');
+    const inputArray = line.split(' ');
     var output = '';
         
     for (var i = 0; i < inputArray[0].length; i++) {

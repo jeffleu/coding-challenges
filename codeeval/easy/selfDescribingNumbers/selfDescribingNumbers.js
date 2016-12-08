@@ -1,33 +1,21 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var inputArray = (line.split('')).map(Number);
-    var booleanArray = [];
+    const inputArray = (line.split('')).map(Number);
+    const booleanArray = [];
         
-    inputArray.forEach(function(value, index) {
+    inputArray.forEach((value, index) => {
       var countIndex = 0;
-          
-      inputArray.forEach(function(val) {
+      inputArray.forEach(val => {
         if (val === index) {
           countIndex++;
         }
       });
           
-      if (value === countIndex) {
-        booleanArray.push(true);
-      } else {
-        booleanArray.push(false);
-      }
+      (value === countIndex) ? booleanArray.push(true) : booleanArray.push(false);
     });
         
-    var result = booleanArray.every(function(value) {
-      return value;
-    });
-        
-    if (result === true) {
-      console.log(1);
-    } else {
-      console.log(0);
-    }
+    const result = booleanArray.every(value => value);
+    (result === true) ? console.log(1) : console.log(0);
   }
 });

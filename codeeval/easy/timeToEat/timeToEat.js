@@ -1,13 +1,7 @@
 var fs  = require("fs");
 fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
   if (line !== "") {
-    var inputArray = ((line.split(' ')).sort()).reverse();
-    var output = '';
-        
-    inputArray.forEach(function(time) {
-      output += time + ' ';
-    });
-        
+    var output = ((line.split(' ')).sort()).reverse().reduce((total, time) => `${total} ${time}`);    
     console.log(output.trim());
   }
 });
