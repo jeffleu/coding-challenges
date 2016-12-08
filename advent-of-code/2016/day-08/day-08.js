@@ -32,29 +32,25 @@ const showScreen = (screen) => {
   }
 };
 
-const rotateLeft = (screen) => {
+const rotate = (screen, direction) => {
   const rotated = [];
   
-  for (let c = screen[0].length - 1; c >= 0; c--) {
-    const row = [];
-    for (let r = 0; r < screen.length; r++) {
-      row.push(screen[r][c]);
+  if (direction === 'left') {
+    for (let c = screen[0].length - 1; c >= 0; c--) {
+      const row = [];
+      for (let r = 0; r < screen.length; r++) {
+        row.push(screen[r][c]);
+      }
+      rotated.push(row);
     }
-    rotated.push(row);
-  }
-  
-  return rotated;
-};
-
-const rotateRight = (screen) => {
-  const rotated = [];
-  
-  for (let c = 0; c < screen[0].length; c++) {
-    const row = [];
-    for (let r = screen.length - 1; r >= 0; r--) {
-      row.push(screen[r][c]);
+  } else {
+    for (let c = 0; c < screen[0].length; c++) {
+      const row = [];
+      for (let r = screen.length - 1; r >= 0; r--) {
+        row.push(screen[r][c]);
+      }
+      rotated.push(row);
     }
-    rotated.push(row);
   }
   
   return rotated;
@@ -83,10 +79,10 @@ const moveRight = (screen, rowIndex, shift) => {
 };
 
 const moveDown = (screen, columnIndex, shift) => {
-  screen = rotateLeft(screen);
+  screen = rotate(screen, 'left');
   const rotatedRowIndex = screen.length - 1 - columnIndex;
   screen = moveRight(screen, rotatedRowIndex, shift);
-  return rotateRight(screen);
+  return rotate(screen);
 };
 
 const decode = (steps) => {
@@ -114,7 +110,7 @@ const decode = (steps) => {
   }
   
   showScreen(screen);
-  return { lightCount };
+  return {lightCount};
 };
 
 decode(givenInstructions);
