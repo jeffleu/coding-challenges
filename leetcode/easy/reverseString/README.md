@@ -1,7 +1,7 @@
-#Reverse String
+# Reverse String
 
-###Description
+### Description
 Write a function that takes a string as input and returns the string reversed.
 
-###Example
+### Example
 `reverseString('hello'); // 'olleh'`
