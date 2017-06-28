@@ -1,4 +1,4 @@
-# Reverse Vowels of a String
+# Binary Tree Paths
 
 ### Description
 Given a binary tree, return all root-to-leaf paths.
@@ -17,3 +17,13 @@ All root-to-leaf paths are:
 ```
 ["1->2->5", "1->3"]
 ```
+
+**Note**:
+The vowels does not include the letter "y".
+
+
+
+
+
+
+
