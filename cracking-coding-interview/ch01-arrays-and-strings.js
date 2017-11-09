@@ -84,51 +84,51 @@ console.log(`urlify - expected '${urlifyAnswer1}' to equal 'Mr%20John%20Smith':`
 /************************************************************************
   
   1.4: PALINDROME PERMUTATION
-  Given a string, write a function to check if 
-  it is a permutation of a palindrome. A palindrome is a word or phrase 
-  that is the same forwards and backwards. A permutation is a 
-  rearrangement of letters. The palindrome does not need to be limited 
-  to just dictionary words.
-
+  Given a string, write a function to check if it is a permutation of a
+  palindrome. A palindrome is a word or phrase that is the same forwards
+  and backwards. A permutation is a rearrangement of letters. The
+  palindrome does not need to be limited to just dictionary words.
+  
   Input: 'Tact Coa'
   Output: true (permutations: "taco cat", "atco eta", etc.)
-
+  
   Hints: #106, #121, #134, #136
-
+  
 ************************************************************************/
 
-const permutationOfPalindrome = (str) => {
-  str = str.split(' ').join('').toLowerCase();
-  const combos = [];
+const permutationsOfPalindrome = (str) => {
+  if (/[A-Z]/.test(str)) str = str.toLowerCase();
+  if (/[ ]/.test(str)) str = str.split(' ').join('');
   
-  const findCombos = (currentCombo, indexesUsed) => {
-    currentCombo = currentCombo || '';
-    indexesUsed = indexesUsed || [];
+  const storage = {};
+  
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i];
+    !storage.hasOwnProperty(letter) ? storage[letter] = 1 : storage[letter]++;
+  }
+  
+  let hasOddNumber = false;
+  for (let key in storage) {
+    const count = storage[key];
     
-    // Base case
-    if (currentCombo.length === str.length) {
-      combos.push(currentCombo);
-      return;
-    }
-    
-    // Recursive case
-    for (let i = 0; i < str.length; i++) {
-      if (!indexesUsed.includes(i)) {
-        findCombos(currentCombo + str[i], indexesUsed.concat(i));
+    if (count % 2 !== 0) {
+      if (!hasOddNumber) {
+        hasOddNumber = true;
+      } else {
+        return false;
       }
     }
-  };
+  }
   
-  findCombos();
-  
-  return combos.reduce((isPalindrome, combo) => {
-    const reversed = combo.split('').reverse().join('');
-    return (isPalindrome === true || combo === reversed) ? true : false;
-  }, false);
+  return true;
 };
 
-permutationOfPalindrome('Tact Coa'); // true
-permutationOfPalindrome('Tact CoaZ'); // false
+const answer1 = permutationsOfPalindrome('Tact Coa');
+const answer2 = permutationsOfPalindrome('Arc Care');
+const answer3 = permutationsOfPalindrome('Esgm Tohin');
+console.log(`permutationsOfPalindrome - expected ${answer1} to equal true:`, answer1 === true);
+console.log(`permutationsOfPalindrome - expected ${answer2} to equal true:`, answer2 === true);
+console.log(`permutationsOfPalindrome - expected ${answer3} to equal false:`, answer3 === false);
 
 /************************************************************************
   
