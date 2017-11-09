@@ -38,34 +38,30 @@ console.log(`isUnique - expected ${answer2} to equal false:`, answer2 === false)
 
 ************************************************************************/
 
-const permutations = (str1, str2) => {
-  let combos = [];
+const checkPermutations = (str1, str2) => {
+  const storage = {};
+  for (let i = 0; i < str1.length; i++) {
+    !storage.hasOwnProperty(str1[i]) ? storage[str1[i]] = 1 : storage[str1[i]]++;
+  }
   
-  const findCombo = (currentCombo, indexesUsed) => {
-    currentCombo = currentCombo || '';
-    indexesUsed = indexesUsed || [];
+  for (let j = 0; j < str2.length; j++) {
+    const char = str2[j];
     
-    // Base case
-    if (currentCombo.length === str2.length) {
-      combos.push(currentCombo);
-      return;
+    if (storage[char]) {
+      storage[char]--;
+    } else {
+      return false;
     }
-    
-    // Recursive case
-    for (let i = 0; i < str1.length; i++) {
-      if (!indexesUsed.includes(i)) {
-        findCombo(currentCombo + str1[i], indexesUsed.concat(i));
-      }
-    }
-  };
+  }
   
-  findCombo();
-  
-  return combos.includes(str2);
+  return true;
 };
 
-permutations('abcd', 'bad'); // true
-permutations('abcd', 'cat'); // false
+const answer1 = checkPermutations('abcd', 'bad');
+const answer2 = checkPermutations('abcd', 'cat');
+
+console.log(`checkPermutations - expected ${answer1} to equal true:`, answer1 === true);
+console.log(`checkPermutations - expected ${answer2} to equal false:`, answer2 === false);
 
 /************************************************************************
   
