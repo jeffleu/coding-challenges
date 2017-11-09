@@ -123,53 +123,54 @@ const permutationsOfPalindrome = (str) => {
   return true;
 };
 
-const answer1 = permutationsOfPalindrome('Tact Coa');
-const answer2 = permutationsOfPalindrome('Arc Care');
-const answer3 = permutationsOfPalindrome('Esgm Tohin');
-console.log(`permutationsOfPalindrome - expected ${answer1} to equal true:`, answer1 === true);
-console.log(`permutationsOfPalindrome - expected ${answer2} to equal true:`, answer2 === true);
-console.log(`permutationsOfPalindrome - expected ${answer3} to equal false:`, answer3 === false);
+const permutationsOfPalindromeAnswer1 = permutationsOfPalindrome('Tact Coa');
+const permutationsOfPalindromeAnswer2 = permutationsOfPalindrome('Arc Care');
+const permutationsOfPalindromeAnswer3 = permutationsOfPalindrome('Esgm Tohin');
+console.log(`permutationsOfPalindrome - expected ${permutationsOfPalindromeAnswer1} to equal true:`, permutationsOfPalindromeAnswer1 === true);
+console.log(`permutationsOfPalindrome - expected ${permutationsOfPalindromeAnswer2} to equal true:`, permutationsOfPalindromeAnswer2 === true);
+console.log(`permutationsOfPalindrome - expected ${permutationsOfPalindromeAnswer3} to equal false:`, permutationsOfPalindromeAnswer3 === false);
 
 /************************************************************************
   
   1.5: ONE AWAY
-  There are 3 types of edits that can be performed on strings:
-  insert, remove or replace a character. Given two strings, write a 
-  function to check if they were one edit (or zero edits) away.
-
+  There are 3 types of edits that can be performed on strings: insert,
+  remove or replace a character. Given two strings, write a function to
+  check if they were one edit (or zero edits) away.
+  
   EXAMPLE
   pale, ple -> true
   pales, pale -> true
   pale, bale -> true
   pale, bake -> false
-
+  
   Hints: #23, #97, #130
-
+  
 ************************************************************************/
 
 const oneAway = (str1, str2) => {
-  let lengthDifference;
-  let lettersChanged = 0;
+  const sorted = [str1, str2].sort((a, b) => a.length - b.length);
+  const set = new Set(sorted[0].split(''));
   
-  if (str1.length > str2.length) {
-    lengthDifference = str1.length - str2.length;
-  } else if (str2.length > str1.length) {
-    lengthDifference = str2.length - str1.length;
-  } else {
-    for (let i = 0; i < str1.length; i++) {
-      if (str1[i] !== str2[i]) {
-        lettersChanged++;
-      }
+  let numAway = 0;
+  for (let i = 0; i < sorted[1].length; i++) {
+    if (!set.has(sorted[1][i])) {
+      numAway++;
     }
   }
   
-  return (lengthDifference > 1 || lettersChanged > 1) ? false : true;
+  return numAway === 1;
 };
 
-oneAway('pale', 'ple'); // true
-oneAway('pales', 'pale'); // true
-oneAway('pale', 'bale'); // true
-oneAway('pale', 'bake'); // false
+const oneAwayAnswer1 = oneAway('pale', 'ple');
+const oneAwayAnswer2 = oneAway('pales', 'pale');
+const oneAwayAnswer3 = oneAway('pale', 'bale');
+const oneAwayAnswer4 = oneAway('pale', 'bake');
+const oneAwayAnswer5 = oneAway('ple', 'pale');
+console.log(`oneAway - expected ${oneAwayAnswer1} to equal true:`, oneAwayAnswer1 === true);
+console.log(`oneAway - expected ${oneAwayAnswer2} to equal true:`, oneAwayAnswer2 === true);
+console.log(`oneAway - expected ${oneAwayAnswer3} to equal true:`, oneAwayAnswer3 === true);
+console.log(`oneAway - expected ${oneAwayAnswer4} to equal false:`, oneAwayAnswer4 === false);
+console.log(`oneAway - expected ${oneAwayAnswer5} to equal true:`, oneAwayAnswer5 === true);
 
 /************************************************************************
   
