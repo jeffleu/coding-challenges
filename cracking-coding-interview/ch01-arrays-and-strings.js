@@ -22,11 +22,10 @@ const isUnique = (str) => {
   return true;
 };
 
-const answer1 = isUnique('Elisa');
-const answer2 = isUnique('Jeff');
-
-console.log(`isUnique - expected ${answer1} to equal true:`, answer1 === true);
-console.log(`isUnique - expected ${answer2} to equal false:`, answer2 === false);
+const isUniqueAnswer1 = isUnique('Elisa');
+const isUniqueAnswer2 = isUnique('Jeff');
+console.log(`isUnique - expected ${isUniqueAnswer1} to equal true:`, isUniqueAnswer1 === true);
+console.log(`isUnique - expected ${isUniqueAnswer2} to equal false:`, isUniqueAnswer2 === false);
 
 /************************************************************************
   
@@ -57,11 +56,10 @@ const checkPermutations = (str1, str2) => {
   return true;
 };
 
-const answer1 = checkPermutations('abcd', 'bad');
-const answer2 = checkPermutations('abcd', 'cat');
-
-console.log(`checkPermutations - expected ${answer1} to equal true:`, answer1 === true);
-console.log(`checkPermutations - expected ${answer2} to equal false:`, answer2 === false);
+const checkPermutationsAnswer1 = checkPermutations('abcd', 'bad');
+const checkPermutationsAnswer2 = checkPermutations('abcd', 'cat');
+console.log(`checkPermutations - expected ${checkPermutationsAnswer1} to equal true:`, checkPermutationsAnswer1 === true);
+console.log(`checkPermutations - expected ${checkPermutationsAnswer2} to equal false:`, checkPermutationsAnswer2 === false);
 
 /************************************************************************
   
@@ -80,7 +78,8 @@ console.log(`checkPermutations - expected ${answer2} to equal false:`, answer2 =
 
 const urlify = (str) => str.split(' ').join('%20');
 
-urlify('Mr John Smith'); // 'Mr%20John%20Smith'
+const urlifyAnswer1 = urlify('Mr John Smith');
+console.log(`urlify - expected '${urlifyAnswer1}' to equal 'Mr%20John%20Smith':`, urlifyAnswer1 === 'Mr%20John%20Smith');
 
 /************************************************************************
   
