@@ -9,17 +9,23 @@
 ************************************************************************/
 
 const isUnique = (str) => {
-  let letters = str.split(' ').join('').toLowerCase().split('').sort();
-  
-  for (let i = 0; i < letters.length; i++) {
-    if (letters[i] === letters[i + 1]) { return false }
-  }
-  
-  return true;
+	if (/[A-Z]/.test(str)) str = str.toLowerCase();
+	if (/[ ]/.test(str)) str = str.split(' ').join('');
+	str = str.split('').sort();
+	
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		const nextChar = str[i + 1];
+		if (char === nextChar) return false;
+	}
+	
+	return true;
 };
 
-isUnique('Elisa'); // true
-isUnique('Jeff'); // false
+const answer1 = isUnique('Elisa');
+const answer2 = isUnique('Jeff');
+console.log(`isUnique - expected ${answer1} to equal true:`, answer1 === true);
+console.log(`isUnique - expected ${answer2} to equal false:`, answer2 === false);
 
 /************************************************************************
   
