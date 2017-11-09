@@ -24,6 +24,7 @@ const isUnique = (str) => {
 
 const answer1 = isUnique('Elisa');
 const answer2 = isUnique('Jeff');
+
 console.log(`isUnique - expected ${answer1} to equal true:`, answer1 === true);
 console.log(`isUnique - expected ${answer2} to equal false:`, answer2 === false);
 
