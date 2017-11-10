@@ -175,38 +175,38 @@ console.log(`oneAway - expected ${oneAwayAnswer5} to equal true:`, oneAwayAnswer
 /************************************************************************
   
   1.6: STRING COMPRESSION
-  Implement a method to perform basic string 
-  compression using the counts of repeated characters. If the
-  "compressed" string would not become smaller than the original string,
-  your method should return the original string. You can assume the
-  string has only uppercase and lowercase letters.
-
+  Implement a method to perform basic string compression using the counts
+  of repeated characters. If the "compressed" string would not become
+  smaller than the original string, your method should return the
+  original string. You can assume the string has only uppercase and
+  lowercase letters.
+  
   Input: 'aabcccccaaa'
   Output: 'a2b1c5a3'
-
+  
   Hints: #92, #110
-
+  
 ************************************************************************/
 
 const compressString = (str) => {
+  let count = 0;
   let compressed = '';
-  let currentCount = 0;
   
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === str[i + 1]) {
-      currentCount++;
-    } else {
-      currentCount++;
-      compressed += str[i] + currentCount;
-      currentCount = 0;
+    count++;
+    if (str[i] !== str[i + 1]) {
+      compressed += `${str[i]}${count}`;
+      count = 0;
     }
   }
   
-  return (str.length < compressed.length) ? str : compressed;
+  return compressed.length < str.length ? compressed : str;
 };
 
-compressString('aabcccccaaa'); // 'a2b1c5a3'
-compressString('aab'); // 'aab'
+const compressStringAnswer1 = compressString('aabcccccaaa');
+const compressStringAnswer2 = compressString('abc');
+console.log(`compressString - expected '${compressStringAnswer1}' to equal 'a2b1c5a3':`, compressStringAnswer1 === 'a2b1c5a3');
+console.log(`compressString - expected '${compressStringAnswer2}' to equal 'abc':`, compressStringAnswer2 === 'abc');
 
 /************************************************************************
   
