@@ -211,36 +211,37 @@ console.log(`compressString - expected '${compressStringAnswer2}' to equal 'abc'
 /************************************************************************
   
   1.7: ROTATE MATRIX
-  Given an image represented by an NxN matrix, where each
-  pixel in the image is 4 bytes, write a method to rotate the image by
-  90 degrees. Can you do this in place?
+  Given an image represented by an NxN matrix, where each pixel in the
+  image is 4 bytes, write a method to rotate the image by 90 degrees. Can
+  you do this in place?
   
   Hints: #51, #100
-
+  
 ************************************************************************/
 
-const rotateMatrix = (m) => {
-  let n = m.length;
-  let output = [];
+const rotateMatrix = (matrix) => {
+  const n = matrix.length;
   
-  for (let c = 0; c < n; c++) {
-    let newRow = [];
-    for (let r = n - 1; r >= 0; r--) {    
-      newRow.push(m[r][c]);
+  for (let x = 0; x < n; x++) {
+    for (let y = x; y < n-1-x; y++) {
+      [
+        matrix[x][y],
+        matrix[y][n-1-x],
+        matrix[n-1-x][n-1-y],
+        matrix[n-1-y][x], 
+      ] = [
+        matrix[y][n-1-x],
+        matrix[n-1-x][n-1-y],
+        matrix[n-1-y][x],
+        matrix[x][y],
+      ];
     }
-    output.push(newRow);
   }
   
-  return output;
+  return matrix;
 };
 
-const matrix = [
-  [1,2,3],
-  [4,5,6],
-  [7,8,9]
-];
-
-rotateMatrix(matrix); // [[7,4,1], [8,5,2], [9,6,3]]
+console.log(rotateMatrix([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]));
 
 /************************************************************************
   
