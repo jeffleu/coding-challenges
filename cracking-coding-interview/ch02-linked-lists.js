@@ -1,5 +1,22 @@
 /************************************************************************
   
+  LinkedListNode class for tests
+
+************************************************************************/
+
+class LinkedListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+  
+  addToTail(val) {
+    !this.next ? this.next = new LinkedListNode(val) : this.next.addToTail(val);
+  }
+}
+
+/************************************************************************
+  
   2.1: REMOVE DUPLICATES
   Write code to remove duplicates from an unsorted linked list.
 
@@ -10,7 +27,52 @@
 
 ************************************************************************/
 
+const removeDuplicates = (head) => {
+  let currentNode = head;
+  let nextNode = currentNode.next;
+  
+  while(nextNode) {
+    if (currentNode.val !== nextNode.val) {
+      currentNode.next = nextNode;
+      nextNode = nextNode.next;
+      currentNode = currentNode.next;
+    } else {
+      nextNode = nextNode.next;
+    }
+  }
+  
+  currentNode.next = nextNode;
+  return head;
+};
 
+const removeDuplicatesExpected = '{"val":1,"next":{"val":2,"next":{"val":3,"next":{"val":4,"next":null}}}}';
+
+// 1 -> 2 -> 2 -> 3 -> 4 -> null
+const removeDuplicatesList1 = new LinkedListNode(1);
+removeDuplicatesList1.addToTail(2);
+removeDuplicatesList1.addToTail(2);
+removeDuplicatesList1.addToTail(3);
+removeDuplicatesList1.addToTail(4);
+const removeDuplicatesAnswer1 = JSON.stringify(removeDuplicates(removeDuplicatesList1));
+console.log(`expected ${removeDuplicatesAnswer1} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer1 === removeDuplicatesExpected);
+
+// 1 -> 2 -> 3 -> 4 -> 4 -> null
+const removeDuplicatesList2 = new LinkedListNode(1);
+removeDuplicatesList2.addToTail(2);
+removeDuplicatesList2.addToTail(3);
+removeDuplicatesList2.addToTail(4);
+removeDuplicatesList2.addToTail(4);
+const removeDuplicatesAnswer2 = JSON.stringify(removeDuplicates(removeDuplicatesList2));
+console.log(`expected ${removeDuplicatesAnswer2} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer2 === removeDuplicatesExpected);
+
+// 1 -> 1 -> 2 -> 3 -> 4 -> null
+const removeDuplicatesList3 = new LinkedListNode(1);
+removeDuplicatesList3.addToTail(1);
+removeDuplicatesList3.addToTail(2);
+removeDuplicatesList3.addToTail(3);
+removeDuplicatesList3.addToTail(4);
+const removeDuplicatesAnswer3 = JSON.stringify(removeDuplicates(removeDuplicatesList3));
+console.log(`expected ${removeDuplicatesAnswer3} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer3 === removeDuplicatesExpected);
 
 /************************************************************************
   
