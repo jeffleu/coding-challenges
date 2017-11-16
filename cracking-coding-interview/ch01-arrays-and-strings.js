@@ -241,37 +241,50 @@ const rotateMatrix = (matrix) => {
   return matrix;
 };
 
-console.log(rotateMatrix([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]));
+const rotateMatrixAnswer = rotateMatrix([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]);
+rotateMatrixAnswer.forEach(row => console.log(row));
 
 /************************************************************************
   
   1.8: ZERO MATRIX
   Write an algorithm such that if an element in an MxN matrix is 0, its 
   entire row and column are set to 0.
-
+  
   Hints: #17, #74, #102
-
+  
 ************************************************************************/
 
 const zeroMatrix = (matrix) => {
-  let output = [];
-  
+  const zeroCoordinates = [];
   for (let r = 0; r < matrix.length; r++) {
     for (let c = 0; c < matrix[r].length; c++) {
-      (matrix[r].includes(0)) ? output.push(0) : output.push(matrix[r][c]);
+      if (matrix[r][c] === 0) zeroCoordinates.push([r, c]);
     }
   }
   
-  return output;
+  while(zeroCoordinates.length) {
+    const coord = zeroCoordinates.shift();
+    const row = coord[0];
+    const col = coord[1];
+    
+    // Set column to zeroes
+    for (let r = 0; r < matrix.length; r++) {
+      if (matrix[r][col] !== 0) matrix[r][col] = 0;
+    }
+    
+    // Set row to zeroes
+    for (let c = 0; c < matrix[0].length; c++) {
+      if (matrix[row][c] !== 0) matrix[row][c] = 0;
+    }
+  }
+  
+  return matrix;
 };
 
-const newMatrix = [
-  [3,3,3],
-  [5,5,5],
-  [4,4,0]
-];
-
-zeroMatrix(newMatrix); // [[3,3,3], [5,5,5], [0,0,0]]
+const zeroMatrixAnswer1 = zeroMatrix([[1,2,3], [4,5,6], [7,8,0]]);
+zeroMatrixAnswer1.forEach(row => console.log(row));
+const zeroMatrixAnswer2 = zeroMatrix([[1,2,3,4],[5,6,0,8],[7,6,5,4]]);
+zeroMatrixAnswer2.forEach(row => console.log(row));
 
 /************************************************************************
   
