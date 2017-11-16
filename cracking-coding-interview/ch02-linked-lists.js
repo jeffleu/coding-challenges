@@ -84,7 +84,39 @@ console.log(`expected ${removeDuplicatesAnswer3} to equal ${removeDuplicatesExpe
 
 ************************************************************************/
 
+const kthToLast = (head, k) => {
+  let currentNode = head;
+  let nextNode = head;
+  
+  while(k && nextNode) {
+    nextNode = nextNode.next;
+    k--;
+  }
+  
+  while(nextNode) {
+    currentNode = currentNode.next;
+    nextNode = nextNode.next;
+  }
+  
+  return !k ? currentNode.val : null;
+};
 
+const kthToLastList = new LinkedListNode(5);
+kthToLastList.addToTail(10);
+kthToLastList.addToTail(15);
+kthToLastList.addToTail(20);
+kthToLastList.addToTail(25);
+
+const kthToLastAnswer1 = kthToLast(kthToLastList, 1);
+const kthToLastAnswer2 = kthToLast(kthToLastList, 2);
+const kthToLastAnswer3 = kthToLast(kthToLastList, 3);
+const kthToLastAnswer4 = kthToLast(kthToLastList, 4);
+const kthToLastAnswer5 = kthToLast(kthToLastList, 10);
+console.log(`expected ${kthToLastAnswer1} to equal 25:`, kthToLastAnswer1 === 25);
+console.log(`expected ${kthToLastAnswer2} to equal 20:`, kthToLastAnswer2 === 20);
+console.log(`expected ${kthToLastAnswer3} to equal 15:`, kthToLastAnswer3 === 15);
+console.log(`expected ${kthToLastAnswer4} to equal 10:`, kthToLastAnswer4 === 10);
+console.log(`expected ${kthToLastAnswer5} to equal null:`, kthToLastAnswer5 === null);
 
 /************************************************************************
   
