@@ -289,26 +289,33 @@ zeroMatrixAnswer2.forEach(row => console.log(row));
 /************************************************************************
   
   1.9: STRING ROTATION
-  Assume you have a method isSubstring which checks if one word is a
-  substring of another. Given two strings, sl and s2, write code to 
-  check if s2 is a rotation of sl using only one call to isSubstring 
-  (e.g., "waterbottle" is a rotation of"erbottlewat").
-
+  Assume you have a method isSubstring which checks if one word is a 
+  substring of another. Given two strings, sl and s2, write code to check
+  if s2 is a rotation of sl using only one call to isSubstring (e.g.,
+  "waterbottle" is a rotation of"erbottlewat").
+  
   Hints: #34, #88, #104
-
+  
 ************************************************************************/
 
 const stringRotation = (str1, str2) => {
-  const output = [str1];
-  let strCopy = str1;
+  if (str1.length !== str2.length) return false;
   
-  for (let i = 0; i < str1.length - 1; i++) {
-    strCopy = strCopy.slice(1, str1.length) + strCopy[0];
-    output.push(strCopy);
+  for (let i = 1; i < str1.length; i++) {
+    const left = str1.substring(0, i);
+    const right = str1.substring(i);
+    if (right + left === str2) return true;
   }
   
-  return (output.includes(str2)) ? true : false;
+  return false;
 };
 
-stringRotation('waterbottle', 'erbottlewat'); // true
-stringRotation('waterbottle', 'bottlewat'); // false
+const stringRotationAnswer1 = stringRotation('waterbottle', 'erbottlewat');
+const stringRotationAnswer2 = stringRotation('waterbottle', 'bottlewat');
+const stringRotationAnswer3 = stringRotation('something', 'thingsome');
+const stringRotationAnswer4 = stringRotation('something', 'thingsom');
+console.log(`expected ${stringRotationAnswer1} to equal true:`, stringRotationAnswer1 === true);
+console.log(`expected ${stringRotationAnswer2} to equal false:`, stringRotationAnswer2 === false);
+console.log(`expected ${stringRotationAnswer3} to equal true:`, stringRotationAnswer3 === true);
+console.log(`expected ${stringRotationAnswer4} to equal false:`, stringRotationAnswer4 === false);
+
