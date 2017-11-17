@@ -1,6 +1,6 @@
 /************************************************************************
   
-  LinkedListNode class for tests
+  LinkedListNode class and helper functions for tests
 
 ************************************************************************/
 
@@ -14,6 +14,18 @@ class LinkedListNode {
     !this.next ? this.next = new LinkedListNode(val) : this.next.addToTail(val);
   }
 }
+
+const printList = (head) => {
+  let currentNode = head;
+  let result = '';
+  
+  while(currentNode) {
+    result += `${currentNode.val} -> `;
+    currentNode = currentNode.next;
+  }
+  
+  return result + `null`;
+};
 
 /************************************************************************
   
@@ -45,7 +57,7 @@ const removeDuplicates = (head) => {
   return head;
 };
 
-const removeDuplicatesExpected = '{"val":1,"next":{"val":2,"next":{"val":3,"next":{"val":4,"next":null}}}}';
+const removeDuplicatesExpected = '1 -> 2 -> 3 -> 4 -> null';
 
 // 1 -> 2 -> 2 -> 3 -> 4 -> null
 const removeDuplicatesList1 = new LinkedListNode(1);
@@ -53,7 +65,8 @@ removeDuplicatesList1.addToTail(2);
 removeDuplicatesList1.addToTail(2);
 removeDuplicatesList1.addToTail(3);
 removeDuplicatesList1.addToTail(4);
-const removeDuplicatesAnswer1 = JSON.stringify(removeDuplicates(removeDuplicatesList1));
+const removeDuplicatesAnswer1 = printList(removeDuplicates(removeDuplicatesList1));
+removeDuplicatesAnswer1
 console.log(`expected ${removeDuplicatesAnswer1} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer1 === removeDuplicatesExpected);
 
 // 1 -> 2 -> 3 -> 4 -> 4 -> null
@@ -62,7 +75,7 @@ removeDuplicatesList2.addToTail(2);
 removeDuplicatesList2.addToTail(3);
 removeDuplicatesList2.addToTail(4);
 removeDuplicatesList2.addToTail(4);
-const removeDuplicatesAnswer2 = JSON.stringify(removeDuplicates(removeDuplicatesList2));
+const removeDuplicatesAnswer2 = printList(removeDuplicates(removeDuplicatesList2));
 console.log(`expected ${removeDuplicatesAnswer2} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer2 === removeDuplicatesExpected);
 
 // 1 -> 1 -> 2 -> 3 -> 4 -> null
@@ -71,7 +84,7 @@ removeDuplicatesList3.addToTail(1);
 removeDuplicatesList3.addToTail(2);
 removeDuplicatesList3.addToTail(3);
 removeDuplicatesList3.addToTail(4);
-const removeDuplicatesAnswer3 = JSON.stringify(removeDuplicates(removeDuplicatesList3));
+const removeDuplicatesAnswer3 = printList(removeDuplicates(removeDuplicatesList3));
 console.log(`expected ${removeDuplicatesAnswer3} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer3 === removeDuplicatesExpected);
 
 /************************************************************************
@@ -134,7 +147,7 @@ console.log(`expected ${kthToLastAnswer5} to equal null:`, kthToLastAnswer5 === 
 ************************************************************************/
 
 const deleteMiddleNode = (node) => {
-  const nextNode = node.next;
+  let nextNode = node.next;
   node.val = nextNode ? nextNode.val : null;
   node.next = nextNode ? nextNode.next : null;
 };
@@ -148,8 +161,10 @@ deleteMiddleNodeList.addToTail('f');
 
 const cNode = deleteMiddleNodeList.next.next;
 deleteMiddleNode(cNode);
-const deleteMiddleNodeExpected = '{"val":"a","next":{"val":"b","next":{"val":"d","next":{"val":"e","next":{"val":"f","next":null}}}}}';
-console.log(`expected ${JSON.stringify(deleteMiddleNodeList)} to equal ${deleteMiddleNodeExpected}:`, JSON.stringify(deleteMiddleNodeList) === deleteMiddleNodeExpected);
+
+const deleteMiddleNodeActual = printList(deleteMiddleNodeList);
+const deleteMiddleNodeExpected = 'a -> b -> d -> e -> f -> null';
+console.log(`expected ${deleteMiddleNodeActual} to equal ${deleteMiddleNodeExpected}:`, deleteMiddleNodeActual === deleteMiddleNodeExpected);
 
 /************************************************************************
   
