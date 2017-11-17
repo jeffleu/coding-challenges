@@ -133,7 +133,23 @@ console.log(`expected ${kthToLastAnswer5} to equal null:`, kthToLastAnswer5 === 
 
 ************************************************************************/
 
+const deleteMiddleNode = (node) => {
+  const nextNode = node.next;
+  node.val = nextNode ? nextNode.val : null;
+  node.next = nextNode ? nextNode.next : null;
+};
 
+const deleteMiddleNodeList = new LinkedListNode('a');
+deleteMiddleNodeList.addToTail('b');
+deleteMiddleNodeList.addToTail('c');
+deleteMiddleNodeList.addToTail('d');
+deleteMiddleNodeList.addToTail('e');
+deleteMiddleNodeList.addToTail('f');
+
+const cNode = deleteMiddleNodeList.next.next;
+deleteMiddleNode(cNode);
+const deleteMiddleNodeExpected = '{"val":"a","next":{"val":"b","next":{"val":"d","next":{"val":"e","next":{"val":"f","next":null}}}}}';
+console.log(`expected ${JSON.stringify(deleteMiddleNodeList)} to equal ${deleteMiddleNodeExpected}:`, JSON.stringify(deleteMiddleNodeList) === deleteMiddleNodeExpected);
 
 /************************************************************************
   
