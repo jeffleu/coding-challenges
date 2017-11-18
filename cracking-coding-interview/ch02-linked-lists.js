@@ -210,7 +210,58 @@ console.log(`expected ${deleteMiddleNodeActual} to equal ${deleteMiddleNodeExpec
 
 ************************************************************************/
 
+const sumListReverse = (head) => {
+  let num1 = '';
+  let num2 = '';
+  let currentNode = head;
+  
+  while(currentNode) {
+    if (num1.length < 3) {
+      num1 = `${currentNode.val}` + num1;
+    } else {
+      num2 = `${currentNode.val}` + num2;
+    }
+    currentNode = currentNode.next;
+  }
+  
+  return parseInt(num1) + parseInt(num2);
+};
 
+const sumList = (head) => {
+  let num1 = '';
+  let num2 = '';
+  let currentNode = head;
+  
+  while(currentNode) {
+    if (num1.length < 3) {
+      num1 += currentNode.val;
+    } else {
+      num2 += currentNode.val;
+    }
+    currentNode = currentNode.next;
+  }
+  
+  return parseInt(num1) + parseInt(num2);
+};
+
+const sumListReverseList = new LinkedListNode(7);
+sumListReverseList.addToTail(1);
+sumListReverseList.addToTail(6);
+sumListReverseList.addToTail(5);
+sumListReverseList.addToTail(9);
+sumListReverseList.addToTail(2);
+
+const sumListList = new LinkedListNode(6);
+sumListList.addToTail(1);
+sumListList.addToTail(7);
+sumListList.addToTail(2);
+sumListList.addToTail(9);
+sumListList.addToTail(5);
+
+const sumListAnswer1 = sumListReverse(sumListReverseList);
+const sumListAnswer2 = sumList(sumListList);
+console.log(`expected ${sumListAnswer1} to equal 912:`, sumListAnswer1 === 912);
+console.log(`expected ${sumListAnswer2} to equal 912:`, sumListAnswer2 === 912);
 
 /************************************************************************
   
