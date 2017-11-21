@@ -273,25 +273,25 @@ console.log(`expected ${sumListAnswer2} to equal 912:`, sumListAnswer2 === 912);
 ************************************************************************/
 
 const isListPalindrome = (head) => {
-	const values = [];
-	let currentNode = head;
-	while(currentNode) {
-		values.push(currentNode.val);
-		currentNode = currentNode.next;
-	}
+  const values = [];
+  let currentNode = head;
+  while(currentNode) {
+    values.push(currentNode.val);
+    currentNode = currentNode.next;
+  }
 	
-	let start = 0;
-	let end = values.length - 1;
-	while(start < end) {
-		if (values[start] !== values[end]) {
-			return false;
-		} else {
-			start++;
-			end--;
-		}
-	}
+  let start = 0;
+  let end = values.length - 1;
+  while(start < end) {
+    if (values[start] !== values[end]) {
+      return false;
+    } else {
+      start++;
+      end--;
+    }
+  }
 	
-	return true;
+  return true;
 };
 
 // 1 -> 2 -> 3 -> 2 -> 1 -> null
