@@ -272,7 +272,56 @@ console.log(`expected ${sumListAnswer2} to equal 912:`, sumListAnswer2 === 912);
 
 ************************************************************************/
 
+const isListPalindrome = (head) => {
+	const values = [];
+	let currentNode = head;
+	while(currentNode) {
+		values.push(currentNode.val);
+		currentNode = currentNode.next;
+	}
+	
+	let start = 0;
+	let end = values.length - 1;
+	while(start < end) {
+		if (values[start] !== values[end]) {
+			return false;
+		} else {
+			start++;
+			end--;
+		}
+	}
+	
+	return true;
+};
 
+// 1 -> 2 -> 3 -> 2 -> 1 -> null
+const palindromeList1 = new LinkedListNode(1);
+palindromeList1.addToTail(2);
+palindromeList1.addToTail(3);
+palindromeList1.addToTail(2);
+palindromeList1.addToTail(1);
+
+// 1 -> 2 -> 3 -> 3 -> 2 -> 1 -> null
+const palindromeList2 = new LinkedListNode(1);
+palindromeList2.addToTail(2);
+palindromeList2.addToTail(3);
+palindromeList2.addToTail(3);
+palindromeList2.addToTail(2);
+palindromeList2.addToTail(1);
+
+// 1 -> 2 -> 3 -> 4 -> 5 -> null
+const palindromeList3 = new LinkedListNode(1);
+palindromeList3.addToTail(2);
+palindromeList3.addToTail(3);
+palindromeList3.addToTail(4);
+palindromeList3.addToTail(5);
+
+const palindromeListAnswer1 = isListPalindrome(palindromeList1);
+const palindromeListAnswer2 = isListPalindrome(palindromeList2);
+const palindromeListAnswer3 = isListPalindrome(palindromeList3);
+console.log(`expected ${palindromeListAnswer1} to equal true:`, palindromeListAnswer1 === true);
+console.log(`expected ${palindromeListAnswer2} to equal true:`, palindromeListAnswer2 === true);
+console.log(`expected ${palindromeListAnswer3} to equal false:`, palindromeListAnswer3 === false);
 
 /************************************************************************
   
