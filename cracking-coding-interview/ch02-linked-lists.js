@@ -184,7 +184,59 @@ console.log(`expected ${deleteMiddleNodeActual} to equal ${deleteMiddleNodeExpec
 
 ************************************************************************/
 
+const partitionList = (head, n) => {
+  let leftHead;
+  let leftTail;
+  let rightHead;
+  let rightTail;
+  let current = head;
 
+  while(current) {
+    if (current.val < n) {
+      if (!leftHead) {
+        leftHead = leftTail = current;
+      } else {
+        leftTail.next = current;
+        leftTail = leftTail.next;
+      }
+    } else {
+      if (!rightHead) {
+        rightHead = rightTail = current;
+      } else {
+        rightTail.next = current;
+        rightTail = rightTail.next;
+      }
+    }
+    
+    current = current.next;
+  }
+  
+  if (leftTail.next !== null) leftTail.next = null;
+  if (rightTail.next !== null) rightTail.next = null;
+  
+  leftTail.next = rightHead;
+  return leftHead;
+};
+
+// 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 -> null
+const listToPartition1 = createLinkedList([3, 5, 8, 5, 10, 2, 1]);
+const listToPartition2 = createLinkedList([3, 5, 8, 5, 10, 2, 1]);
+const listToPartition3 = createLinkedList([3, 5, 8, 5, 10, 2, 1]);
+const listToPartition4 = createLinkedList([3, 5, 8, 5, 10, 2, 1]);
+
+const partitionAnswer1 = printList(partitionList(listToPartition1, 5));
+const partitionAnswer2 = printList(partitionList(listToPartition2, 6));
+const partitionAnswer3 = printList(partitionList(listToPartition3, 3));
+const partitionAnswer4 = printList(partitionList(listToPartition4, 7));
+const partitionExpected1 = '3 -> 2 -> 1 -> 5 -> 8 -> 5 -> 10 -> null';
+const partitionExpected2 = '3 -> 5 -> 5 -> 2 -> 1 -> 8 -> 10 -> null';
+const partitionExpected3 = '2 -> 1 -> 3 -> 5 -> 8 -> 5 -> 10 -> null';
+const partitionExpected4 = '3 -> 5 -> 5 -> 2 -> 1 -> 8 -> 10 -> null';
+
+console.log(`expected ${partitionAnswer1} to equal ${partitionExpected1}:`, partitionAnswer1 === partitionExpected1);
+console.log(`expected ${partitionAnswer2} to equal ${partitionExpected2}:`, partitionAnswer2 === partitionExpected2);
+console.log(`expected ${partitionAnswer3} to equal ${partitionExpected3}:`, partitionAnswer3 === partitionExpected3);
+console.log(`expected ${partitionAnswer4} to equal ${partitionExpected4}:`, partitionAnswer4 === partitionExpected4);
 
 /************************************************************************
   
