@@ -15,6 +15,12 @@ class LinkedListNode {
   }
 }
 
+const createLinkedList = (arr) => {
+  const head = new LinkedListNode(arr.shift());
+  while(arr.length) head.addToTail(arr.shift());
+  return head;
+};
+
 const printList = (head) => {
   let currentNode = head;
   let result = '';
@@ -57,34 +63,17 @@ const removeDuplicates = (head) => {
   return head;
 };
 
+const removeDuplicatesList1 = createLinkedList([1, 2, 2, 3, 4]);
+const removeDuplicatesList2 = createLinkedList([1, 2, 3, 4, 4]);
+const removeDuplicatesList3 = createLinkedList([1, 1, 2, 3, 4]);
+
+const removeDuplicatesAnswer1 = printList(removeDuplicates(removeDuplicatesList1));
+const removeDuplicatesAnswer2 = printList(removeDuplicates(removeDuplicatesList2));
+const removeDuplicatesAnswer3 = printList(removeDuplicates(removeDuplicatesList3));
 const removeDuplicatesExpected = '1 -> 2 -> 3 -> 4 -> null';
 
-// 1 -> 2 -> 2 -> 3 -> 4 -> null
-const removeDuplicatesList1 = new LinkedListNode(1);
-removeDuplicatesList1.addToTail(2);
-removeDuplicatesList1.addToTail(2);
-removeDuplicatesList1.addToTail(3);
-removeDuplicatesList1.addToTail(4);
-const removeDuplicatesAnswer1 = printList(removeDuplicates(removeDuplicatesList1));
-removeDuplicatesAnswer1
 console.log(`expected ${removeDuplicatesAnswer1} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer1 === removeDuplicatesExpected);
-
-// 1 -> 2 -> 3 -> 4 -> 4 -> null
-const removeDuplicatesList2 = new LinkedListNode(1);
-removeDuplicatesList2.addToTail(2);
-removeDuplicatesList2.addToTail(3);
-removeDuplicatesList2.addToTail(4);
-removeDuplicatesList2.addToTail(4);
-const removeDuplicatesAnswer2 = printList(removeDuplicates(removeDuplicatesList2));
 console.log(`expected ${removeDuplicatesAnswer2} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer2 === removeDuplicatesExpected);
-
-// 1 -> 1 -> 2 -> 3 -> 4 -> null
-const removeDuplicatesList3 = new LinkedListNode(1);
-removeDuplicatesList3.addToTail(1);
-removeDuplicatesList3.addToTail(2);
-removeDuplicatesList3.addToTail(3);
-removeDuplicatesList3.addToTail(4);
-const removeDuplicatesAnswer3 = printList(removeDuplicates(removeDuplicatesList3));
 console.log(`expected ${removeDuplicatesAnswer3} to equal ${removeDuplicatesExpected}:`, removeDuplicatesAnswer3 === removeDuplicatesExpected);
 
 /************************************************************************
@@ -114,17 +103,14 @@ const kthToLast = (head, k) => {
   return !k ? currentNode.val : null;
 };
 
-const kthToLastList = new LinkedListNode(5);
-kthToLastList.addToTail(10);
-kthToLastList.addToTail(15);
-kthToLastList.addToTail(20);
-kthToLastList.addToTail(25);
+const kthToLastList = createLinkedList([5, 10, 15, 20, 25]);
 
 const kthToLastAnswer1 = kthToLast(kthToLastList, 1);
 const kthToLastAnswer2 = kthToLast(kthToLastList, 2);
 const kthToLastAnswer3 = kthToLast(kthToLastList, 3);
 const kthToLastAnswer4 = kthToLast(kthToLastList, 4);
 const kthToLastAnswer5 = kthToLast(kthToLastList, 10);
+
 console.log(`expected ${kthToLastAnswer1} to equal 25:`, kthToLastAnswer1 === 25);
 console.log(`expected ${kthToLastAnswer2} to equal 20:`, kthToLastAnswer2 === 20);
 console.log(`expected ${kthToLastAnswer3} to equal 15:`, kthToLastAnswer3 === 15);
@@ -152,12 +138,7 @@ const deleteMiddleNode = (node) => {
   node.next = nextNode ? nextNode.next : null;
 };
 
-const deleteMiddleNodeList = new LinkedListNode('a');
-deleteMiddleNodeList.addToTail('b');
-deleteMiddleNodeList.addToTail('c');
-deleteMiddleNodeList.addToTail('d');
-deleteMiddleNodeList.addToTail('e');
-deleteMiddleNodeList.addToTail('f');
+const deleteMiddleNodeList = createLinkedList(['a', 'b', 'c', 'd', 'e', 'f']);
 
 const cNode = deleteMiddleNodeList.next.next;
 deleteMiddleNode(cNode);
@@ -285,30 +266,15 @@ const sumList = (head) => {
   let currentNode = head;
   
   while(currentNode) {
-    if (num1.length < 3) {
-      num1 += currentNode.val;
-    } else {
-      num2 += currentNode.val;
-    }
+    num1.length < 3 ? num1 += currentNode.val : num2 += currentNode.val;
     currentNode = currentNode.next;
   }
   
   return parseInt(num1) + parseInt(num2);
 };
 
-const sumListReverseList = new LinkedListNode(7);
-sumListReverseList.addToTail(1);
-sumListReverseList.addToTail(6);
-sumListReverseList.addToTail(5);
-sumListReverseList.addToTail(9);
-sumListReverseList.addToTail(2);
-
-const sumListList = new LinkedListNode(6);
-sumListList.addToTail(1);
-sumListList.addToTail(7);
-sumListList.addToTail(2);
-sumListList.addToTail(9);
-sumListList.addToTail(5);
+const sumListReverseList = createLinkedList([7, 1, 6, 5, 9, 2]);
+const sumListList = createLinkedList([6, 1, 7, 2, 9, 5]);
 
 const sumListAnswer1 = sumListReverse(sumListReverseList);
 const sumListAnswer2 = sumList(sumListList);
@@ -346,27 +312,9 @@ const isListPalindrome = (head) => {
   return true;
 };
 
-// 1 -> 2 -> 3 -> 2 -> 1 -> null
-const palindromeList1 = new LinkedListNode(1);
-palindromeList1.addToTail(2);
-palindromeList1.addToTail(3);
-palindromeList1.addToTail(2);
-palindromeList1.addToTail(1);
-
-// 1 -> 2 -> 3 -> 3 -> 2 -> 1 -> null
-const palindromeList2 = new LinkedListNode(1);
-palindromeList2.addToTail(2);
-palindromeList2.addToTail(3);
-palindromeList2.addToTail(3);
-palindromeList2.addToTail(2);
-palindromeList2.addToTail(1);
-
-// 1 -> 2 -> 3 -> 4 -> 5 -> null
-const palindromeList3 = new LinkedListNode(1);
-palindromeList3.addToTail(2);
-palindromeList3.addToTail(3);
-palindromeList3.addToTail(4);
-palindromeList3.addToTail(5);
+const palindromeList1 = createLinkedList([1, 2, 3, 2, 1]);
+const palindromeList2 = createLinkedList([1, 2, 3, 3, 2, 1]);
+const palindromeList3 = createLinkedList([1, 2, 3, 4, 5]);
 
 const palindromeListAnswer1 = isListPalindrome(palindromeList1);
 const palindromeListAnswer2 = isListPalindrome(palindromeList2);
