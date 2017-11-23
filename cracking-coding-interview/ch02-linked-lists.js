@@ -336,7 +336,59 @@ console.log(`expected ${palindromeListAnswer3} to equal false:`, palindromeListA
 
 ************************************************************************/
 
+const listIntersection = (head1, head2) => {
+  const visited = new Set();
+  
+  let current1 = head1;
+  while(current1) {
+    if (!visited.has(current1)) visited.add(current1);
+    current1 = current1.next;
+  }
+  
+  let current2 = head2;
+  while(current2) {
+    if (visited.has(current2)) return current2.val;
+    current2 = current2.next;
+  }
+  
+  return null;
+};
 
+/*
+       D
+       ↓
+       E
+       ↓
+       F
+       ↓
+   A → B → C → null
+*/
+
+const intersectingList1 = createLinkedList(['A', 'B', 'C']);
+const intersectingList2 = createLinkedList(['D', 'E', 'F']);
+const B = intersectingList1.next;
+const F = intersectingList2.next.next;
+F.next = B;
+
+/*
+   U → V → W → null
+           ↓
+       X → Y → Z → null
+*/
+const intersectingList3 = createLinkedList(['U', 'V', 'W']);
+const intersectingList4 = createLinkedList(['X', 'Y', 'Z']);
+const W = intersectingList3.next.next;
+const Y = intersectingList4.next;
+W.next = Y;
+
+const intersectingAnswer1 = listIntersection(intersectingList1, intersectingList2);
+const intersectingAnswer2 = listIntersection(intersectingList1, intersectingList3);
+const intersectingAnswer3 = listIntersection(intersectingList3, intersectingList4);
+const intersectingAnswer4 = listIntersection(intersectingList2, intersectingList4);
+console.log(`expected ${intersectingAnswer1} to equal B:`, intersectingAnswer1 === 'B');
+console.log(`expected ${intersectingAnswer2} to equal null:`, intersectingAnswer2 === null);
+console.log(`expected ${intersectingAnswer3} to equal Y:`, intersectingAnswer3 === 'Y');
+console.log(`expected ${intersectingAnswer4} to equal null:`, intersectingAnswer4 === null);
 
 /************************************************************************
   
