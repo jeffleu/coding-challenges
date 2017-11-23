@@ -357,3 +357,39 @@ console.log(`expected ${palindromeListAnswer3} to equal false:`, palindromeListA
 
 ************************************************************************/
 
+const detectLoop = (head) => {
+  const visited = new Set();
+  let current = head;
+  
+  while(current) {
+    if (!visited.has(current)) {
+      visited.add(current);
+    } else {
+      return current.val;
+    }
+    current = current.next;
+  }
+  
+  return null;
+};
+
+// A -> B -> C - > D -> E -> C (same C as earlier)
+const loopList1 = createLinkedList(['A', 'B', 'C', 'D', 'E']);
+const E = loopList1.next.next.next.next;
+const C = loopList1.next.next;
+E.next = C;
+
+// A -> B -> C -> D -> E -> F -> G -> H -> I -> J -> D (same D as earlier)
+const loopList2 = createLinkedList(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']);
+const J = loopList2.next.next.next.next.next.next.next.next.next;
+const D = loopList2.next.next.next;
+J.next = D;
+
+const loopList3 = createLinkedList(['A', 'B', 'C', 'D', 'E', 'F']);
+
+const detectLoopAnswer1 = detectLoop(loopList1);
+const detectLoopAnswer2 = detectLoop(loopList2);
+const detectLoopAnswer3 = detectLoop(loopList3);
+console.log(`expected ${detectLoopAnswer1} to equal C:`, detectLoopAnswer1 === 'C');
+console.log(`expected ${detectLoopAnswer2} to equal D:`, detectLoopAnswer2 === 'D');
+console.log(`expected ${detectLoopAnswer3} to equal null:`, detectLoopAnswer3 === null);
