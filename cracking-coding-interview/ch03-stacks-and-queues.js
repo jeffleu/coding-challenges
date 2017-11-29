@@ -20,7 +20,68 @@
 
 ************************************************************************/
 
+class StackMin {
+  constructor() {
+    this.stack = [];
+    this.min = null;
+  }
+  
+  push(val) {
+    let valueToAdd = val;
+    
+    if (!this.min) {
+      this.min = val;
+    } else if (val < this.min) {
+      valueToAdd = 2 * val - this.min;
+      this.min = val;
+    }
+    
+    this.stack[this.stack.length] = valueToAdd;
+  }
 
+  pop() {
+    const removed = this.stack[this.stack.length - 1];
+    this.stack.length--;
+
+    if (!this.stack.length) {
+      this.min = null;
+    } else if (removed < this.min) {
+      this.min = 2 * this.min - removed;
+    }
+    
+    return removed;
+  }
+}
+
+const stackMinTest = new StackMin();
+console.log('ADDING VALUES');
+console.log(`expected ${stackMinTest.min} to equal null:`, stackMinTest.min === null);
+stackMinTest.push(3);
+console.log(`expected ${stackMinTest.min} to equal 3:`, stackMinTest.min === 3);
+stackMinTest.push(5);
+console.log(`expected ${stackMinTest.min} to equal 3:`, stackMinTest.min === 3);
+stackMinTest.push(2);
+console.log(`expected ${stackMinTest.min} to equal 2:`, stackMinTest.min === 2);
+stackMinTest.push(1);
+console.log(`expected ${stackMinTest.min} to equal 1:`, stackMinTest.min === 1);
+stackMinTest.push(1);
+console.log(`expected ${stackMinTest.min} to equal 1:`, stackMinTest.min === 1);
+stackMinTest.push(-1);
+console.log(`expected ${stackMinTest.min} to equal -1:`, stackMinTest.min === -1);
+
+console.log('\nREMOVING VALUES');
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal 1:`, stackMinTest.min === 1);
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal 1:`, stackMinTest.min === 1);
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal 2:`, stackMinTest.min === 2);
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal 3:`, stackMinTest.min === 3);
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal 3:`, stackMinTest.min === 3);
+stackMinTest.pop();
+console.log(`expected ${stackMinTest.min} to equal null:`, stackMinTest.min === null);
 
 /************************************************************************
   
