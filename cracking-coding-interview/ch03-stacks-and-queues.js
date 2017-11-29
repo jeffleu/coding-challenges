@@ -103,7 +103,89 @@ console.log(`expected ${stackMinTest.min} to equal null:`, stackMinTest.min === 
 
 ************************************************************************/
 
+class SetOfStacks {
+  constructor(max) {
+    this.stack = [[]];
+    this.currentStackIndex = 0;
+    this.threshold = max;
+  }
+  
+  push(value) {
+    const currentStack = this.stack[this.currentStackIndex];
+    
+    if (currentStack.length < this.threshold) {
+      currentStack.push(value);
+    } else {
+      this.stack.push([value]);
+      this.currentStackIndex++;
+    }
+  }
+  
+  pop() {
+    const currentStack = this.stack[this.currentStackIndex];
+    
+    if (this.currentStackIndex > 0 || currentStack.length) {
+      const removed = currentStack.pop();
+    
+      if (!currentStack.length && this.currentStackIndex > 0) {
+        this.stack.pop();
+        this.currentStackIndex--;
+      }
+      
+      return removed;
+    }
+  }
+}
 
+const setOfStacksTest = new SetOfStacks(3);
+console.log('ADDING VALUES');
+setOfStacksTest.push(1);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected ${setOfStacksTest.stack[0][0]} to equal 1:`, setOfStacksTest.stack[0][0] === 1);
+setOfStacksTest.push(2);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected ${setOfStacksTest.stack[0][1]} to equal 2:`, setOfStacksTest.stack[0][1] === 2);
+setOfStacksTest.push(3);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected ${setOfStacksTest.stack[0][2]} to equal 3:`, setOfStacksTest.stack[0][2] === 3);
+setOfStacksTest.push(4);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected ${setOfStacksTest.stack[1][0]} to equal 4:`, setOfStacksTest.stack[1][0] === 4);
+setOfStacksTest.push(5);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected ${setOfStacksTest.stack[1][1]} to equal 5:`, setOfStacksTest.stack[1][1] === 5);
+setOfStacksTest.push(6);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected ${setOfStacksTest.stack[1][2]} to equal 6:`, setOfStacksTest.stack[1][2] === 6);
+setOfStacksTest.push(7);
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 3:`, setOfStacksTest.stack.length === 3);
+console.log(`expected ${setOfStacksTest.stack[2][0]} to equal 7:`, setOfStacksTest.stack[2][0] === 7);
+
+console.log('\nREMOVING VALUES');
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected last stack length to equal 3:`, setOfStacksTest.stack[1].length === 3);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected last stack length to equal 2:`, setOfStacksTest.stack[1].length === 2);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 2:`, setOfStacksTest.stack.length === 2);
+console.log(`expected last stack length to equal 1:`, setOfStacksTest.stack[1].length === 1);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected last stack length to equal 3:`, setOfStacksTest.stack[0].length === 3);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected last stack length to equal 2:`, setOfStacksTest.stack[0].length === 2);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected last stack length to equal 1:`, setOfStacksTest.stack[0].length === 1);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected last stack length to equal 0:`, setOfStacksTest.stack[0].length === 0);
+setOfStacksTest.pop();
+console.log(`expected number of stacks ${setOfStacksTest.stack.length} to equal 1:`, setOfStacksTest.stack.length === 1);
+console.log(`expected last stack length to equal 0:`, setOfStacksTest.stack[0].length === 0);
 
 /************************************************************************
   
