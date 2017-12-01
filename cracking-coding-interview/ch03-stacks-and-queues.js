@@ -196,7 +196,55 @@ console.log(`expected last stack length to equal 0:`, setOfStacksTest.stack[0].l
 
 ************************************************************************/
 
+class TwoStackQueue {
+  constructor() {
+    this.inbox = [];
+    this.outbox = [];
+  }
+  
+  enqueue(value) {
+    this.inbox.push(value);
+  }
+  
+  dequeue() {
+    if (!this.outbox.length) {
+      if (!this.inbox.length) return null;
+      
+      while (this.inbox.length) {
+        this.outbox.push(this.inbox.pop());
+      }      
+    }
+    
+    return this.outbox.pop();
+  }
+}
 
+const queue = new TwoStackQueue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+
+const removed1 = queue.dequeue();
+console.log(`expected ${removed1} to equal 1:`, removed1 === 1);
+
+queue.enqueue(4);
+queue.enqueue(5);
+queue.enqueue(6);
+
+const removed2 = queue.dequeue();
+console.log(`expected ${removed2} to equal 2:`, removed2 === 2);
+const removed3 = queue.dequeue();
+console.log(`expected ${removed3} to equal 3:`, removed3 === 3);
+const removed4 = queue.dequeue();
+console.log(`expected ${removed4} to equal 4:`, removed4 === 4);
+const removed5 = queue.dequeue();
+console.log(`expected ${removed5} to equal 5:`, removed5 === 5);
+const removed6 = queue.dequeue();
+console.log(`expected ${removed6} to equal 6:`, removed6 === 6);
+
+queue.enqueue(7);
+const removed7 = queue.dequeue();
+console.log(`expected ${removed7} to equal 7:`, removed7 === 7);
 
 /************************************************************************
   
