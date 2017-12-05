@@ -20,7 +20,7 @@ In this example, the spreadsheet's checksum would be `8 + 4 + 6 = 18`.
 
 What is the checksum for the spreadsheet in your puzzle input?
 
-Your puzzle answer was **54426**.
+Your puzzle answer was `54426`.
 
 ### Part Two
 
@@ -44,4 +44,4 @@ For example, given the following spreadsheet:
 
 What is the sum of each row's result in your puzzle input?
 
-Your puzzle answer was **333**.
+Your puzzle answer was `333`.

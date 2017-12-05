@@ -23,7 +23,7 @@ For example:
 
 How many steps are required to carry the data from the square identified in your puzzle input all the way to the access port?
 
-Your puzzle answer was **480**.
+Your puzzle answer was `480`.
 
 ### Part Two
 
@@ -49,4 +49,4 @@ Once a square is written, its value does not change. Therefore, the first few sq
 
 What is the first value written that is larger than your puzzle input?
 
-Your puzzle answer was **349975**.
+Your puzzle answer was `349975`.
