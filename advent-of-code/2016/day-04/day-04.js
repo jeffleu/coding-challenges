@@ -28,10 +28,8 @@ const getRealRooms = (list) => {
   let sumOfSectorIds = 0;
   
   list.split(' ').forEach(room => {
-    let roomName = room.split('-');
-    roomName = roomName.slice(0, roomName.length - 1).join('');
-    let roomNameWithDashes = room.split('-');
-    roomNameWithDashes = roomNameWithDashes.slice(0, roomNameWithDashes.length - 1).join('-');    
+    let roomName = room.split('-').slice(0, roomName.length - 1).join('');
+    let roomNameWithDashes = room.split('-').slice(0, roomNameWithDashes.length - 1).join('-');
     const sectorID = +room.split('-').reverse()[0].split('[')[0];
     const checkSum = room.split('-').reverse()[0].split('[')[1].slice(0,5);
     
