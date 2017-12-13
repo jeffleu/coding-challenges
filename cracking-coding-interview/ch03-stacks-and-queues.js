@@ -259,7 +259,63 @@ console.log(`expected ${removed7} to equal 7:`, removed7 === 7);
 
 ************************************************************************/
 
+class SortStack {
+  constructor() {
+    this.stack = [];
+    this.temp = [];
+  }
+  
+  push(val) {
+    while(val > this.peek()) {
+      this.temp.push(this.pop());
+    }
+    
+    this.stack.push(val);
+    
+    while(this.temp.length) {
+      this.stack.push(this.temp.pop());
+    }
+  }
+  
+  pop() {
+    return this.stack.pop();
+  }
+  
+  peek() {
+    return this.stack[this.stack.length - 1];
+  }
+  
+  isEmpty() {
+    return this.stack.length === 0;
+  }
+}
 
+const stack = new SortStack();
+stack.push(5);
+stack.push(3);
+console.log(`expected ${stack.peek()} to equal 3:`, stack.peek() === 3);
+stack.push(6);
+stack.push(8);
+stack.push(1);
+console.log(`expected ${stack.peek()} to equal 1:`, stack.peek() === 1);
+stack.push(100);
+stack.push(-15);
+console.log(`expected ${stack.peek()} to equal -15:`, stack.peek() === -15);
+
+const popped1 = stack.pop();
+console.log(`expected ${popped1} to equal -15:`, popped1 === -15);
+const popped2 = stack.pop();
+console.log(`expected ${popped2} to equal 1:`, popped2 === 1);
+const popped3 = stack.pop();
+console.log(`expected ${popped3} to equal 3:`, popped3 === 3);
+const popped4 = stack.pop();
+console.log(`expected ${popped4} to equal 5:`, popped4 === 5);
+const popped5 = stack.pop();
+console.log(`expected ${popped5} to equal 6:`, popped5 === 6);
+const popped7 = stack.pop();
+console.log(`expected ${popped7} to equal 8:`, popped7 === 8);
+const popped8 = stack.pop();
+console.log(`expected ${popped8} to equal 100:`, popped8 === 100);
 
 /************************************************************************
   
