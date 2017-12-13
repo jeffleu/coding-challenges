@@ -334,3 +334,81 @@ console.log(`expected ${popped8} to equal 100:`, popped8 === 100);
 
 ************************************************************************/
 
+class DogCatQueue {
+  constructor() {
+    this.queue = [];
+    this.temp = [];
+  }
+  
+  enqueue(animalType, name) {
+    this.queue.push({animalType, name});
+  }
+  
+  dequeueAny() {
+    while(this.queue.length) {
+      this.temp.push(this.queue.pop());
+    }
+    
+    const result = this.temp.pop();
+    
+    while(this.temp.length) {
+      this.queue.push(this.temp.pop());
+    }
+    
+    return result;
+  }
+  
+  dequeueDog() {
+    while(this.queue.length) {
+      this.temp.push(this.queue.pop());
+    }
+    
+    let result;
+    
+    while(this.temp.length) {
+      const removed = this.temp.pop();
+      
+      if (removed.animalType === 'dog' && !result) {
+        result = removed;
+      } else {
+        this.queue.push(removed);
+      }
+    }
+    
+    return result;
+  }
+  
+  dequeueCat() {
+    while(this.queue.length) {
+      this.temp.push(this.queue.pop());
+    }
+    
+    let result;
+    
+    while(this.temp.length) {
+      const removed = this.temp.pop();
+      
+      if (removed.animalType === 'cat' && !result) {
+        result = removed;
+      } else {
+        this.queue.push(removed);
+      }
+    }
+    
+    return result;
+  }
+}
+
+const queue = new DogCatQueue();
+queue.enqueue('dog', 'd1');
+queue.enqueue('cat', 'c1');
+queue.enqueue('dog', 'd2');
+queue.enqueue('dog', 'd3');
+queue.enqueue('cat', 'c2');
+queue.enqueue('cat', 'c3');
+
+console.log(`expected ${queue.dequeueAny().name} to equal d1`);
+console.log(`expected ${queue.dequeueDog().name} to equal d2`);
+console.log(`expected ${queue.dequeueCat().name} to equal c1`);
+console.log(`expected ${queue.dequeueCat().name} to equal c2`);
+console.log(`expected ${queue.dequeueCat().name} to equal c3`);
