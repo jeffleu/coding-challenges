@@ -1,13 +1,17 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 const singleNumber = (nums) => {
-  let obj = {};
+  const numCount = {};
   
-  nums.forEach(num => {
-    (!obj[num]) ? obj[num] = 1 : obj[num]++;
-  });
-  
-  for (let key in obj) {
-    if (obj[key] === 1) {
-      return Number(key);
+  for (let i = 0; i < nums.length; i++) {
+    if (!numCount.hasOwnProperty(nums[i])) {
+      numCount[nums[i]] = 1;
+    } else {
+      delete numCount[nums[i]];
     }
   }
+  
+  return Number(Object.keys(numCount)[0]);
 };
