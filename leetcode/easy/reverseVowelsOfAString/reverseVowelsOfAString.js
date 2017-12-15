@@ -2,27 +2,21 @@
  * @param {string} s
  * @return {string}
  */
-const isVowel = letter => /[aeiou]/i.test(letter);
-
-const reverseVowels = s => {
-  s = s.split('');
-  let pointer1 = 0;
-  let pointer2 = s.length - 1;
+const reverseVowels = (s) => {
+  const arr = s.split('');
+  const isVowel = /[aeiou]/i;
+  let start = 0;
+  let end = s.length - 1;
   
-  while(pointer1 <= pointer2) {
-    if (!isVowel(s[pointer1]) && !isVowel(s[pointer2])) {
-      pointer1++;
-      pointer2--;
-    } else if (isVowel(s[pointer1]) && !isVowel(s[pointer2])) {
-      pointer2--;
-    } else if (!isVowel(s[pointer1]) && isVowel(s[pointer2])) {
-      pointer1++;
-    } else if (isVowel(s[pointer1]) && isVowel(s[pointer2])) {
-      [s[pointer1], s[pointer2]] = [s[pointer2], s[pointer1]];
-      pointer1++;
-      pointer2--;
+  while(start < end) {
+    if (isVowel.test(arr[start]) && isVowel.test(arr[end])) {
+      [arr[start], arr[end]] = [arr[end], arr[start]];
+      start++;
+      end--;
     }
+    if (!isVowel.test(arr[start])) start++;
+    if (!isVowel.test(arr[end])) end--;
   }
   
-  return s.join('');
+  return arr.join('');
 };
