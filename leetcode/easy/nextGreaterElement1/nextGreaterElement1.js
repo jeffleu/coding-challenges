@@ -5,15 +5,10 @@
  */
 const nextGreaterElement = (findNums, nums) => {
   return findNums.map(n => {
-    const indexOfNum = nums.indexOf(n);
-    
-    let nextGreater = -1;
-    for (let i = indexOfNum + 1; i < nums.length; i++) {
-      if (nums[i] > n && nextGreater === -1) {
-        nextGreater = nums[i];
-      }
+    const nIndex = nums.indexOf(n);
+    for (let i = nIndex + 1; i < nums.length; i++) {
+      if (nums[i] > n) return nums[i];
     }
-    
-    return nextGreater;
+    return -1;
   });
 };
