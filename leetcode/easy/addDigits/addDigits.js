@@ -1,14 +1,13 @@
-const addDigits = function(num) {
-  let output = num;
+/**
+ * @param {number} num
+ * @return {number}
+ */
+const addDigits = (num) => {
+  let str = num.toString();
   
-  let sum = function() {
-    let arr = output.toString().split('').map(Number);
-    output = arr.reduce((memo, val) => memo + val);
-  };
-  
-  while (output >= 10) {
-    sum();
+  while(str.length > 1) {
+    str = str.split('').map(Number).reduce((output, n) => output + n, 0).toString();
   }
   
-  return output;
+  return Number(str);
 };
