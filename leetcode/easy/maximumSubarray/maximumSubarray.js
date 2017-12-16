@@ -2,18 +2,14 @@
  * @param {number[]} nums
  * @return {number}
  */
-const maxSubArray = nums => {
-  let result = -Infinity;
+const maxSubArray = (arr) => {
+  let maxSoFar = arr[0];
+  let maxEndingHere = arr[0];
   
-  for (let i = 0; i < nums.length; i++) {
-    let currentSum = nums[i];
-    if (currentSum > result) result = currentSum;
-      
-    for (let j = i + 1; j < nums.length; j++) {
-      currentSum += nums[j];
-      if (currentSum > result) result = currentSum;
-    }
+  for (let i = 1; i < arr.length; i++) {
+    maxEndingHere = Math.max(maxEndingHere + arr[i], arr[i]);
+    maxSoFar = Math.max(maxSoFar, maxEndingHere);
   }
   
-  return result;
+  return maxSoFar;
 };
