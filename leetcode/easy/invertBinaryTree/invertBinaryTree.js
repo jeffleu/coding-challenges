@@ -11,14 +11,8 @@
  */
 const invertTree = (root) => {
   if (!root) return root;
-  
-  const _left = root.left;
-  const _right = root.right;
-  root.left = _right;
-  root.right = _left;
-
+  [root.left, root.right] = [root.right, root.left];
   invertTree(root.left);
   invertTree(root.right);
-
   return root;
 };
