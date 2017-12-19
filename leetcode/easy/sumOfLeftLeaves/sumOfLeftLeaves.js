@@ -9,15 +9,9 @@
  * @param {TreeNode} root
  * @return {number}
  */
-const sumOfLeftLeaves = (root, whichSide, result = []) => {
+const sumOfLeftLeaves = (root) => {
   if (!root) return 0;
-    
-  if (!root.left && !root.right) {
-    if (whichSide === 'left') result.push(root.val);
-    return 0;
-  }
-  
-  if (root.left) sumOfLeftLeaves(root.left, 'left', result);
-  if (root.right) sumOfLeftLeaves(root.right, 'right', result);
-  return result.reduce((total, n) => total + n, 0);
+  let left = root.left && !root.left.left && !root.left.right ? root.left.val : sumOfLeftLeaves(root.left);
+  const right = sumOfLeftLeaves(root.right);
+  return left + right;
 };
