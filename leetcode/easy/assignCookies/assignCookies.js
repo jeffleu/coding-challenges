@@ -1,23 +1,21 @@
 /**
- * @param {number[]} g
- * @param {number[]} s
+ * @param {number[]} children
+ * @param {number[]} cookies
  * @return {number}
  */
 const findContentChildren = (children, cookies) => {
-  children = children.sort((a,b) => a-b);
-  cookies = cookies.sort((a,b) => a-b);
-  
+  children = children.sort((a, b) => a - b);
+  cookies = cookies.sort((a, b) => a - b);
+  let childPointer = 0;
+  let cookiePointer = 0;
   let result = 0;
   
-  while(cookies.length) {
-  	const cookie = cookies.shift();
-  	for (let i = 0; i < children.length; i++) {
-  		if (cookie >= children[i]) {
-  			children.shift();
-  			result++;
-  			break;
-  		}
-  	}
+  while(cookiePointer < cookies.length) {
+    if (children[childPointer] <= cookies[cookiePointer]) {
+      childPointer++;
+      result++;
+    }
+    cookiePointer++;
   }
   
   return result;
