@@ -3,17 +3,14 @@
  * @return {number}
  */
 
-const firstUniqChar = (str) => {
-	if (str.length === 0) { return -1 }
-	
-	const letterCount = str.split('').reduce((obj, letter) => {
-		(!obj[letter]) ? obj[letter] = 1 : obj[letter]++;
-		return obj;
-	}, {});
-	
-	for (let key in letterCount) {
-		if (letterCount[key] === 1) return str.indexOf(key);
-	}
-	
-	return -1;
+const firstUniqChar = (s) => {
+  const letterCount = {};
+  
+  for (let i = 0; i < s.length; i++) {
+    letterCount[s[i]] = !letterCount.hasOwnProperty(s[i]) ? 1 : letterCount[s[i]] + 1;
+  }
+  
+  for (let i = 0; i < s.length; i++) {
+    if (letterCount[s[i]] === 1) return i;
+  }
 };
