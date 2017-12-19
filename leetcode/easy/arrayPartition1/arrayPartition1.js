@@ -2,21 +2,13 @@
  * @param {number[]} nums
  * @return {number}
  */
-const arrayPairSum = nums => {
+const arrayPairSum = (nums) => {
   const sorted = nums.sort((a, b) => a - b);
-  let current = [];
   let result = 0;
   
-  while(sorted.length) {
-    const currentNum = sorted.shift();
-    if (current.length < 2) {
-      current.push(currentNum);
-    } else {
-      result += Math.min(current[0], current[1]);
-      current = [currentNum];
-    }
+  for (let i = 0; i < nums.length; i += 2) {
+    result += Math.min(nums[i], nums[i + 1]);
   }
-
-  result += Math.min(current[0], current[1]);
+  
   return result;
 };
