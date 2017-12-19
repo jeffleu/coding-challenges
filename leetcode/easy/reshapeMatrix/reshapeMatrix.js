@@ -5,17 +5,14 @@
  * @return {number[][]}
  */
 const matrixReshape = (nums, r, c) => {
-  const originalCount = nums.reduce((total, row) => total + row.length, 0);
-  const newCount = r * c;
-  if (newCount !== originalCount) return nums;
+  if (nums.length * nums[0].length !== r * c) return nums;
+  const flattened = nums.reduce((output, row) => output.concat(row), []);
   
-  const numArray = nums.reduce((output, row) => output.concat(row), []);
-  
-  const result = [];
+  const result = [];  
   for (let i = 0; i < r; i++) {
     result[i] = [];
     for (let j = 0; j < c; j++) {
-      result[i][j] = numArray.shift();
+      result[i][j] = flattened.shift();
     }
   }
   return result;
