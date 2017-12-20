@@ -4,20 +4,21 @@
  * @return {boolean}
  */
 const wordPattern = (pattern, str) => {
-  const wordsArray = str.split(' ');
-  if (pattern.length !== wordsArray.length) return false;
+  const words = str.split(' ');
+  if (words.length !== pattern.length) return false;
   const storage = {};
   const usedWords = new Set();
   
   for (let i = 0; i < pattern.length; i++) {
-  	const currentLetter = pattern[i];
-  	const currentWord = wordsArray[i];
-  	if (!storage[currentLetter] && !usedWords.has(currentWord)) {
-  		storage[currentLetter] = currentWord;
-  		usedWords.add(currentWord);
-  	}
-  	
-  	if (storage[currentLetter] !== currentWord) return false;
+    const letter = pattern[i];
+    const word = words[i];
+    
+    if (!storage.hasOwnProperty(letter) && !usedWords.has(word)) {
+      storage[letter] = word;
+      usedWords.add(word);
+    } else if (storage[letter] !== word) {
+      return false;
+    }
   }
   
   return true;
