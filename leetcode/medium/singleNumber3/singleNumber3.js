@@ -2,20 +2,18 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const singleNumber = nums => {
-    const obj = {};
+const singleNumber = (nums) => {
+  const storage = {};
+  
+  for (let i = 0; i < nums.length; i++) {
+    const n = nums[i];
     
-    nums.forEach(num => {
-        if (!obj[num]) {
-            obj[num] = 1;
-        } else {
-            obj[num]++;
-        }
-    });
-    
-    const output = [];
-    for (let key in obj) {
-        if (obj[key] === 1) output.push(Number(key));
+    if (!storage.hasOwnProperty(n)) {
+      storage[n] = 1;
+    } else {
+      delete storage[n];
     }
-    return output;
+  }
+  
+  return Object.keys(storage).map(Number);
 };
