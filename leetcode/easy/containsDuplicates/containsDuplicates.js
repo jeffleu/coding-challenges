@@ -2,14 +2,15 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-const containsDuplicate = nums => {
-  nums = nums.sort((a,b) => a - b);
-  let result = false;
+const containsDuplicate  = (nums) => {
+  const set = new Set();
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === nums[i + 1]) {
-      result = true;
-      break;
+    if (!set.has(nums[i])) {
+      set.add(nums[i]);
+    } else {
+      return true;
     }
   }
-  return result;
+  
+  return false;
 };
