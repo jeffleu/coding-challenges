@@ -2,22 +2,22 @@
  * @param {string} s
  * @return {number}
  */
-const lengthOfLongestSubstring = s => {
-  const len = s.length;
+const lengthOfLongestSubstring = (s) => {
   let result = 0;
-  let start = 0;
-  let end = 0;
-  const set = new Set();
-
-  while(start < len && end < len) {
-    if (!set.has(s[end])) {
-      set.add(s[end]);
+  
+  for (let i = 0; i < s.length; i++) {
+    const chars = new Set([s[i]]);
+    let end = i + 1;
+    
+    while(end < s.length) {
+      const endChar = s[end];
+      if (chars.has(endChar)) break;
+      chars.add(endChar);
       end++;
-      result = Math.max(result, end - start);
-    } else {
-      set.delete(s[start]);
-      start++;
     }
+
+    const substrLength = end - i;
+    if (substrLength > result) result = substrLength;
   }
   
   return result;
