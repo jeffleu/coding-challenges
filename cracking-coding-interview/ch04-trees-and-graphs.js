@@ -90,7 +90,7 @@ tree.left.insertRight(5);
 tree.right.insertLeft(6);
 tree.right.insertRight(7);
 
-listOfDepths(tree)[2];
+listOfDepths(tree);
 
 /************************************************************************
   
