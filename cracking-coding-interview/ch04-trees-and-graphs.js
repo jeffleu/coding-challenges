@@ -131,7 +131,33 @@ console.log(`expected ${isTreeBalancedAnswer2} to equal false:`, isTreeBalancedA
 
 ************************************************************************/
 
+const isBST = (root) => {
+  if (!root) return true;
+  if (root.left && root.left.val > root.val) return false;
+  if (root.right && root.right.val < root.val) return false;
+  return isBST(root.left) && isBST(root.right);
+};
 
+const tree = new BinaryTree(1);
+tree.insertLeft(2);
+tree.insertRight(3);
+tree.left.insertLeft(4);
+tree.left.insertRight(5);
+tree.right.insertLeft(6);
+tree.right.insertRight(7);
+
+const tree2 = new BinaryTree(5);
+tree2.insertLeft(2);
+tree2.insertRight(7);
+tree2.left.insertLeft(1);
+tree2.left.insertRight(4);
+tree2.right.insertLeft(6);
+tree2.right.insertRight(9);
+
+const isBSTAnswer1 = isBST(tree);
+const isBSTAnswer2 = isBST(tree2);
+console.log(`expected ${isBSTAnswer1} to equal false:`, isBSTAnswer1 === false);
+console.log(`expected ${isBSTAnswer2} to equal true:`, isBSTAnswer2 === true);
 
 /************************************************************************
   
