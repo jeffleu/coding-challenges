@@ -104,7 +104,23 @@ listOfDepths(tree);
 
 ************************************************************************/
 
+const maxDepth = (root) => !root ? 0 : 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+const isTreeBalanced = (root) => maxDepth(root.left) === maxDepth(root.right);
 
+const tree = new BinaryTree(1);
+tree.insertLeft(2);
+tree.insertRight(3);
+tree.left.insertLeft(4);
+tree.left.insertRight(5);
+tree.right.insertLeft(6);
+tree.right.insertRight(7);
+
+const isTreeBalancedAnswer1 = isTreeBalanced(tree);
+console.log(`expected ${isTreeBalancedAnswer1} to equal true:`, isTreeBalancedAnswer1 === true);
+
+tree.right.right.insertRight(8);
+const isTreeBalancedAnswer2 = isTreeBalanced(tree);
+console.log(`expected ${isTreeBalancedAnswer2} to equal false:`, isTreeBalancedAnswer2 === false);
 
 /************************************************************************
   
