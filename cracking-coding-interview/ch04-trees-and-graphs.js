@@ -1,5 +1,41 @@
 /************************************************************************
   
+  Classes
+
+************************************************************************/
+
+class BinaryTree {
+  constructor(val) {
+    this.val = val;
+    this.left = this.right = null;
+  }
+  
+  insertLeft(val) {
+    if (!this.left) this.left = new BinaryTree(val);
+  }
+  
+  insertRight(val) {
+    if (!this.right) this.right = new BinaryTree(val);
+  }
+}
+
+class ListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+  
+  add(val) {
+    if (!this.next) {
+      this.next = new ListNode(val);
+    } else {
+      this.next.add(val);
+    }
+  }
+}
+
+/************************************************************************
+  
   4.1: ROUTE BETWEEN NODES
   Given a directed graph, design an algorithm to find out whether there
   is a route between two nodes.
@@ -33,7 +69,28 @@
 
 ************************************************************************/
 
+const listOfDepths = (root, depth = 0, result = []) => {
+  if (!root) return result;
+  if (!result[depth]) {
+    result[depth] = new ListNode(root.val);
+  } else {
+    result[depth].add(root.val);
+  }
+  
+  listOfDepths(root.left, depth + 1, result);
+  listOfDepths(root.right, depth + 1, result);
+  return result;
+};
 
+const tree = new BinaryTree(1);
+tree.insertLeft(2);
+tree.insertRight(3);
+tree.left.insertLeft(4);
+tree.left.insertRight(5);
+tree.right.insertLeft(6);
+tree.right.insertRight(7);
+
+listOfDepths(tree)[2];
 
 /************************************************************************
   
