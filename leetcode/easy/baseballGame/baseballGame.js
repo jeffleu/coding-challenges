@@ -2,31 +2,32 @@
  * @param {string[]} ops
  * @return {number}
  */
-const calPoints = (ops) => {
+// const calPoints = (ops) => {
+
+/*
+Runtime: 56 ms, faster than 70.62% of JavaScript online submissions for Baseball Game.
+Memory Usage: 34.7 MB, less than 100.00% of JavaScript online submissions for Baseball Game.
+*/
+
+const calPoints = ops => {
+  const queue = [];
   let result = 0;
-  const stack = [];
-
-  for (let i = 0; i < ops.length; i++) {
-    const op = ops[i];
-    let toAdd = 0;
-
-    if (/[0-9]/.test(op)) toAdd = Number(op);
-    if (op === 'D') toAdd = stack[stack.length - 1] * 2;
-
+  ops.forEach(op => {
     if (op === '+') {
-      const num1 = stack[stack.length - 1] || 0;
-      const num2 = stack[stack.length - 2] || 0;
-      toAdd = num1 + num2;
+      const sum = queue[queue.length - 1] + queue[queue.length - 2];
+      queue.push(sum);
+      result += sum;
+    } else if (op === 'D') {
+      const double = queue[queue.length - 1] * 2;
+      queue.push(double);
+      result += double;
+    } else if (op === 'C') {
+      result -= queue.pop();
+    } else {
+      op = Number(op);
+      queue.push(op);
+      result += op;
     }
-
-    if (op === 'C') {
-      result -= stack.pop();
-      continue;
-    }
-
-    result += toAdd;
-    stack.push(toAdd);
-  }
-
+  });
   return result;
 };
