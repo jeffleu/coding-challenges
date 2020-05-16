@@ -2,16 +2,18 @@
  * @param {number} n
  * @return {number}
  */
+
+/*
+Runtime: 88 ms, faster than 61.38% of JavaScript online submissions for Arranging Coins.
+Memory Usage: 36.6 MB, less than 33.33% of JavaScript online submissions for Arranging Coins.
+*/
+
 const arrangeCoins = n => {
   let coinsLeft = n;
-  let currentStep = 1;
-  let steps = 0;
-
-  while(coinsLeft >= currentStep) {
-    coinsLeft -= currentStep;
-    currentStep++;
-    steps++;
+  let step = 0;
+  while(step < coinsLeft) {
+    step++;
+    coinsLeft -= step;
   }
-
-  return steps;
+  return step;
 };
