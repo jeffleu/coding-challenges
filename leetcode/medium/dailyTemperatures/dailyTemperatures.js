@@ -13,16 +13,16 @@ const dailyTemperatures = T => {
   const stack = [];
   for (let i = T.length - 1; i >= 0; i--) {
     if (!stack.length) {
-      result[i] = 0;
-      stack.push(i);
+      result[i] = 0; // if stack is empty, that means there's no larger temp, so set index to 0
     } else if (T[i] >= T[stack[stack.length - 1]]) {
-      while(T[i] >= T[stack[stack.length - 1]]) stack.pop();
-      result[i] = !stack.length ? 0 : stack[stack.length - 1] - i;
-      stack.push(i);
+      // if current temp is larger than top of stack
+      while(T[i] >= T[stack[stack.length - 1]]) stack.pop(); // remove all temps in stack that are smaller than current temp as they are no longer relevant
+      result[i] = !stack.length ? 0 : stack[stack.length - 1] - i; // if stack is empty, set to 0, otherwise set to top of stack index - current index
     } else if (T[i] < T[stack[stack.length - 1]]) {
+      // 
       result[i] = stack[stack.length - 1] - i;
-      stack.push(i);
     }
+    stack.push(i); // add current index to stack
   }
   return result;
 };
