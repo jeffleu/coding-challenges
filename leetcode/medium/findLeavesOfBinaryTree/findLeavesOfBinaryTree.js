@@ -11,21 +11,15 @@
  * @return {number[][]}
  */
 
-const getHeight = (node, result) => {
-  if (!node) return -1;
-  const leftHeight = getHeight(node.left, result);
-  const rightHeight = getHeight(node.right, result);
-  const level = Math.max(leftHeight, rightHeight) + 1;
-  
-  if (!result[level]) result[level] = [];
-  result[level].push(node.val);
-  node.left = node.right = null;
-  
-  return level;
-};
-
-const findLeaves = (root) => {
+const findLeaves = root => {
   const result = [];
-  getHeight(root, result);
+  const helper = node => {
+    if (!node) return -1;
+    const level = Math.max(helper(node.left), helper(node.right)) + 1;
+    if (!result[level]) result[level] = [];
+    result[level].push(node.val);
+    return level;
+  };
+  helper(root);
   return result;
 };

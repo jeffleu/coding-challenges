@@ -14,7 +14,7 @@ const maxProduct = nums => {
     max = Math.max(Math.max(current * min, current * max), current);
     min = Math.min(Math.min(current * min, current * prevMax), current);
     result = Math.max(max, result);
-  }
+  } 
   
   return result;
 };
