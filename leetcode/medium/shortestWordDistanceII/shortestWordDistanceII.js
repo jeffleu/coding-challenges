@@ -15,7 +15,6 @@ class WordDistance {
   shortest(word1, word2) {
     const arr1 = this.map[word1];
     const arr2 = this.map[word2];
-    console.log(arr1)
     let pointer1 = 0;
     let pointer2 = 0;
     let result = Infinity;
